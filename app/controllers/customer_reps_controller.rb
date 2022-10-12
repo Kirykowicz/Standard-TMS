@@ -1,0 +1,2 @@
+class CustomerRepsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class CarrierRepsController < ApplicationController
+end

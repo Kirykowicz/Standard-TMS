@@ -1,0 +1,2 @@
+class CheckCallsController < ApplicationController
+end
