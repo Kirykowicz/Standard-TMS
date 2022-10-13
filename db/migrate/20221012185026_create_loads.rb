@@ -7,9 +7,15 @@ class CreateLoads < ActiveRecord::Migration[7.0]
       t.integer :pallet_count 
       t.integer :temperature 
       t.integer :equipment_id
-      t.integer :status_id
+      t.integer :truck_status_id
+      t.integer :load_status_id 
       t.string :commodity 
-      t.string :instructions 
+      t.string :notes
+      t.string :driver_name
+      t.string :driver_cell
+      t.integer :truck_number
+      t.integer :trailer_number 
+      t.integer :equipment_length 
       t.timestamps
     end
   end

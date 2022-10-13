@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  resources :truck_statuses
+  resources :load_statuses
   resources :fee_types
   resources :fees
   resources :sites
   resources :stops
   resources :check_calls
-  resources :statuses
   resources :equipment
   resources :customer_reps
   resources :carrier_reps

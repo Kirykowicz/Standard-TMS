@@ -5,7 +5,8 @@ class Load < ApplicationRecord
     has_many :sites, through: :stops
     has_many :fees 
     has_many :fee_types, through: :fees 
-    belongs_to :status
+    belongs_to :load_status 
+    belongs_to :truck_status 
     belongs_to :equipment 
     has_many :check_calls 
 end

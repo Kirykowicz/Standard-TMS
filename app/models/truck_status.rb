@@ -1,0 +1,2 @@
+class TruckStatus < ApplicationRecord
+end

@@ -5,6 +5,7 @@ class CreateStops < ActiveRecord::Migration[7.0]
       t.integer :site_id 
       t.string :date
       t.string :time 
+      t.string :notes
       t.timestamps
     end
   end

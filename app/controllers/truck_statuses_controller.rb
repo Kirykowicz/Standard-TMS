@@ -1,0 +1,2 @@
+class TruckStatusesController < ApplicationController
+end
