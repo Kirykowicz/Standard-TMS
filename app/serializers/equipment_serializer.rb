@@ -1,3 +1,3 @@
 class EquipmentSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :equipment_type
 end

@@ -1,6 +1,10 @@
 Equipment.destroy_all 
 LoadStatus.destroy_all 
 TruckStatus.destroy_all
+Site.destroy_all
+FeeType.destroy_all
+Customer.destroy_all
+Carrier.destroy_all
 
 puts 'seeding equipment'
 van = Equipment.create(equipment_type: "Van")
@@ -37,3 +41,11 @@ puts 'seeding fees_types'
     extrastop = FeeType.create(name: "Extra Stop")
     lumper = FeeType.create(name: "Lumper")
 puts 'finished seeding fees_types'
+
+puts 'seeding customers'
+Customer.create(name: "Customer Unassigned")
+puts 'finished seeding customers'
+
+puts 'seeding carrier'
+Carrier.create(name: "Carrier Unassigned")
+puts 'finished seeding carrier'
