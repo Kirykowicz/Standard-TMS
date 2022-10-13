@@ -3,7 +3,7 @@ class CreateSites < ActiveRecord::Migration[7.0]
     create_table :sites do |t|
       t.string :name 
       t.string :city 
-      t.strinf :state
+      t.string :state
       t.string :address
       t.integer :zip 
       t.string :contact_name

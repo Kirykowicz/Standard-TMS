@@ -10,6 +10,7 @@ class CreateLoads < ActiveRecord::Migration[7.0]
       t.integer :truck_status_id
       t.integer :load_status_id 
       t.string :commodity 
+      t.string :reference_info 
       t.string :notes
       t.string :driver_name
       t.string :driver_cell
