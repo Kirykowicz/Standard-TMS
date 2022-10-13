@@ -1,3 +1,3 @@
 class TruckStatusSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :status
 end

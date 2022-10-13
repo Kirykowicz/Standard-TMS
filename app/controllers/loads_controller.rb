@@ -5,7 +5,7 @@ class LoadsController < ApplicationController
     end
 
     def show 
-        load = load.find params[:id]
+        load = Load.find params[:id]
         render json: load, status: :ok 
     end
     
