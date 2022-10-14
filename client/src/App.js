@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Login from "./components/Login";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,9 +18,9 @@ function App() {
   if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <>
+      <Navbar setUser={setUser} />
+    </>
   );
 }
 
