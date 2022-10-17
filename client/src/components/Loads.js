@@ -10,6 +10,7 @@ export default function Loads({ customers, carriers, sites }) {
   const [carrierId, setCarrierId] = useState(null);
   const [originId, setOriginId] = useState(null);
   const [pickupDate, setPickupDate] = useState();
+  const [pickupTime, setPickupTime] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -78,7 +79,17 @@ export default function Loads({ customers, carriers, sites }) {
                 />
               </Form.Group>
             </Col>
-            <Col></Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Time</Form.Label>
+                <Form.Control
+                  type="time"
+                  placeholder="Time"
+                  value={pickupTime}
+                  onChange={(e) => setPickupTime(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
           </Row>
         </Form>
       </Container>
