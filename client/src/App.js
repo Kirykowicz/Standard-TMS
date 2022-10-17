@@ -34,9 +34,7 @@ function App() {
   useEffect(() => {
     fetch("/sites")
       .then((res) => res.json())
-      .then((res) => {
-        setSites(res);
-      });
+      .then(setSites);
 
     fetch("/customers")
       .then((res) => res.json())
@@ -61,7 +59,9 @@ function App() {
         <Route path="/sites" element={<Sites />} />
         <Route
           path="/loads"
-          element={<Loads customers={customers} carriers={carriers} />}
+          element={
+            <Loads customers={customers} carriers={carriers} sites={sites} />
+          }
         />
       </Routes>
     </>
