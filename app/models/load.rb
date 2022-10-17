@@ -9,4 +9,5 @@ class Load < ApplicationRecord
     belongs_to :truck_status 
     belongs_to :equipment 
     has_many :check_calls 
+    has_one :carrier_rep
 end

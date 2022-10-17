@@ -23,7 +23,7 @@ export default function Loadboard() {
               <th>Customer</th>
               <th>Origin City</th>
               <th>Origin State</th>
-              <th>Ship date</th>
+              <th>Ship Date</th>
               <th>Destination City</th>
               <th>Destination State</th>
               <th>Delivery Date</th>

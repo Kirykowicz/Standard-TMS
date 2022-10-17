@@ -7,6 +7,8 @@ Customer.destroy_all
 Carrier.destroy_all
 Load.destroy_all
 Stop.destroy_all
+User.destroy_all
+CarrierRep.destroy_all
 
 puts 'seeding equipment'
 van = Equipment.create(equipment_type: "Van")
@@ -70,3 +72,13 @@ stop2 = Stop.create(load_id: load1.id, site_id: site2.id)
 stop3 = Stop.create(load_id: load2.id, site_id: site2.id)
 stop3 = Stop.create(load_id: load2.id, site_id: site3.id)
 puts 'finished seeding stops'
+
+puts 'seeding users'
+user1 = User.create(username: "Robert", password: "123", first_name: "Robert", last_name: "Kirykowicz")
+user2 = User.create(username: "Jose", password: "123", first_name: "Jose", last_name: "Gomez")
+puts 'finished seeding users'
+
+puts 'seeding carrier reps'
+carrierRep1 = CarrierRep.create(load_id: load1.id, user_id: user2.id)
+carrierRep2 = CarrierRep.create(load_id: load2.id, user_id: user1.id)
+puts 'finished seeding carrier reps'
