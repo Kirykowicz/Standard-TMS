@@ -13,6 +13,7 @@ export default function Loadboard() {
   }, []);
   return (
     <>
+      <h2 className="text-center text-decoration-underline">Load Board</h2>
       <Container fluid>
         <Table striped hover>
           <thead>

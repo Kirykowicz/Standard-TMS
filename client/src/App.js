@@ -17,6 +17,8 @@ function App() {
   // const [user, setUser] = useState(null);
 
   const [sites, setSites] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [carriers, setCarriers] = useState([]);
 
   // useEffect(() => {
   //   // auto-login
@@ -35,6 +37,14 @@ function App() {
       .then((res) => {
         setSites(res);
       });
+
+    fetch("/customers")
+      .then((res) => res.json())
+      .then(setCustomers);
+
+    fetch("/carriers")
+      .then((res) => res.json())
+      .then(setCarriers);
   }, []);
 
   // if (!user) return <Login onLogin={setUser} />;
@@ -49,7 +59,10 @@ function App() {
         <Route path="/carriers" element={<Carriers />} />
         <Route path="/history" element={<History />} />
         <Route path="/sites" element={<Sites />} />
-        <Route path="/loads" element={<Loads />} />
+        <Route
+          path="/loads"
+          element={<Loads customers={customers} carriers={carriers} />}
+        />
       </Routes>
     </>
   );
