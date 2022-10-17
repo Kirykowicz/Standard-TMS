@@ -48,19 +48,25 @@ puts 'finished seeding fees_types'
 
 puts 'seeding customers'
 customer1 = Customer.create(name: "Customer Unassigned")
+customer2 = Customer.create(name: "Gelita USA", address: "2445 Port Neal Rd, Sergeant Bluff, IA 51054", contact_name: "Gina Swanson", contact_email: "Gina@fakeemail.com", contact_phone: "712-943-5516")
+customer3 = Customer.create(name: "Aldi", address: "1200 N Kirk Rd, Batavia, IL 60510", contact_name: "Frank", contact_email: "Frank@fakeemail.com", contact_phone: "630-879-8100")
+customer4 = Customer.create(name: "Jewel-Osco", address: "150 E Pierce Rd, Itasca, IL 60143", contact_name: "Louis", contact_email: "Louis@fakeemail.com", contact_phone: "630-948-6000")
 puts 'finished seeding customers'
 
 puts 'seeding carrier'
 carrier1 = Carrier.create(name: "Carrier Unassigned")
+carrier2 = Carrier.create(name: "US Expediters", address: "6428 Joliet Rd #202, Countryside, IL 60525", mc_number: 977326, contact_name: "Milos", contact_phone: "855-500-5522", contact_email: "milos@fakeuseexpediters.com")
+carrier3 = Carrier.create(name: "Monson & Sons", address: "216 5th St NW, Britt, IA 50423", mc_number: 977326, contact_name: "Ian", contact_phone: "641-843-4272", contact_email: "Ian@fakemonson.com")
 puts 'finished seeding carrier'
-
-
 
 puts 'seeding loads'
 load1 = Load.create(customer_id: customer1.id, carrier_id: carrier1.id, equipment_id: van.id, truck_status_id: unassigned.id, load_status_id: opn.id)
+load2 = Load.create(customer_id: customer2.id, carrier_id: carrier2.id, equipment_id: van.id, truck_status_id: assigned.id, load_status_id: booked.id)
 puts 'finished seeding loads'
 
 puts 'seeding stops'
 stop1 = Stop.create(load_id: load1.id, site_id: site1.id)
 stop2 = Stop.create(load_id: load1.id, site_id: site2.id)
+stop3 = Stop.create(load_id: load2.id, site_id: site2.id)
+stop3 = Stop.create(load_id: load2.id, site_id: site3.id)
 puts 'finished seeding stops'
