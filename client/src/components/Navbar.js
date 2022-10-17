@@ -3,11 +3,11 @@ import { LinkContainer } from "react-router-bootstrap";
 
 function Navbar({ setUser }) {
   function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
+    // fetch("/logout", { method: "DELETE" }).then((r) => {
+    //   if (r.ok) {
+    //     setUser(null);
+    //   }
+    // });
   }
   return (
     <>
