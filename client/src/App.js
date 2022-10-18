@@ -19,6 +19,9 @@ function App() {
   const [sites, setSites] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [carriers, setCarriers] = useState([]);
+  const [equipment, setEquipment] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [feeTypes, setFeeTypes] = useState([]);
 
   // useEffect(() => {
   //   // auto-login
@@ -43,6 +46,18 @@ function App() {
     fetch("/carriers")
       .then((res) => res.json())
       .then(setCarriers);
+
+    fetch("/equipment")
+      .then((res) => res.json())
+      .then(setEquipment);
+
+    fetch("/users")
+      .then((res) => res.json())
+      .then(setUsers);
+
+    fetch("/fee_types")
+      .then((res) => res.json())
+      .then(setFeeTypes);
   }, []);
 
   // if (!user) return <Login onLogin={setUser} />;
@@ -60,7 +75,14 @@ function App() {
         <Route
           path="/loads"
           element={
-            <Loads customers={customers} carriers={carriers} sites={sites} />
+            <Loads
+              customers={customers}
+              carriers={carriers}
+              sites={sites}
+              equipment={equipment}
+              users={users}
+              feeTypes={feeTypes}
+            />
           }
         />
       </Routes>

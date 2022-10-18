@@ -43,6 +43,7 @@ site4 = Site.create(name: "ADM - Decatur IL", city: "Decatur", state: "IL", addr
 puts 'finished seeding sites'
 
 puts 'seeding fees_types'
+    linehaul = FeeType.create(name: 'Linehaul')
     detention = FeeType.create(name: "Detention")
     extrastop = FeeType.create(name: "Extra Stop")
     lumper = FeeType.create(name: "Lumper")
