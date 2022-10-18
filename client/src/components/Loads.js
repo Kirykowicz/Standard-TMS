@@ -29,13 +29,17 @@ export default function Loads({
   const [equipmentLength, setEquipmentLength] = useState(null);
   const [carrierRep, setCarrierRep] = useState(null);
   const [customerRep, setCustomerRep] = useState(null);
+  const [customerFeeType, setCustomerFeeType] = useState(null);
+  const [customerFee, setCustomerFee] = useState(null);
+  const [carrierFeeType, setCarrierFeeType] = useState(null);
+  const [carrierFee, setCarrierFee] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
     <>
-      <h2 className="text-center text-decoration-underline mb-5">NEW LOAD</h2>
+      <h3 className="text-center  mb-5 text-muted">NEW LOAD</h3>
       <Container>
         <Form onSubmit={handleSubmit}>
           <Row>
@@ -226,7 +230,7 @@ export default function Loads({
                 controlId="exampleForm.ControlTextarea1"
               >
                 <Form.Label>Load Notes</Form.Label>
-                <Form.Control as="textarea" rows={6} />
+                <Form.Control as="textarea" rows={8} />
               </Form.Group>
             </Col>
             <Col>
@@ -268,9 +272,69 @@ export default function Loads({
                   </Form.Group>
                 </Col>
               </Row>
-              <Row></Row>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Customer Rate Type</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      value={customerFeeType}
+                      onChange={(e) => setCustomerFeeType(e.target.value)}
+                    >
+                      {/* <option>Unassigned</option> */}
+                      {feeTypes.map((fee) => (
+                        <option value={fee.id}>{fee.name}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Customer Rate</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Dollars"
+                      value={customerFee}
+                      onChange={(e) => setCustomerFee(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Carrier Rate Type</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      value={carrierFeeType}
+                      onChange={(e) => setCarrierFeeType(e.target.value)}
+                    >
+                      {/* <option>Unassigned</option> */}
+                      {feeTypes.map((fee) => (
+                        <option value={fee.id}>{fee.name}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Carrier Rate</Form.Label>
+                    <Form.Control
+                      type="number"
+                      placeholder="Dollars"
+                      value={carrierFee}
+                      onChange={(e) => setCarrierFee(e.target.value)}
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
             </Col>
           </Row>
+          <Container className="text-end mt-4">
+            <Button variant="primary" type="submit" align="center">
+              Build This Load
+            </Button>
+          </Container>
         </Form>
       </Container>
     </>
