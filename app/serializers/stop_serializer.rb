@@ -1,5 +1,5 @@
 class StopSerializer < ActiveModel::Serializer
-  attributes :id, :site_id, :date, :time, :notes, :site_name, :site_city, :site_state
+  attributes :id, :load_id, :site_id, :date, :time, :notes, :site_name, :site_city, :site_state
 
   def site_name
     object.site.name

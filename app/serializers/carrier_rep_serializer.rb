@@ -1,3 +1,3 @@
 class CarrierRepSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :load_id, :user_id
 end

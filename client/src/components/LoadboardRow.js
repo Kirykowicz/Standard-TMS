@@ -14,7 +14,11 @@ export default function LoadboardRow({ load }) {
         <th>{load.stops[1].date ? load.stops[1].date : "-"}</th>
         <th>{load.stops[0].time ? load.stops[0].time : "-"}</th>
         <th>{load.stops[1].time ? load.stops[1].time : "-"}</th>
-        <th>{load.carrier_rep.first_name}</th>
+        <th>
+          {load.carrier_rep.first_name
+            ? load.carrier_rep.first_name
+            : "unassigned"}
+        </th>
         <th>{load.equipment}</th>
       </tr>
     </>

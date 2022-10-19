@@ -15,8 +15,8 @@ export default function NewLoad({
   loads,
   setLoads,
 }) {
-  const [customerId, setCustomerId] = useState(19);
-  const [carrierId, setCarrierId] = useState(15);
+  const [customerId, setCustomerId] = useState(39);
+  const [carrierId, setCarrierId] = useState(30);
   const [originId, setOriginId] = useState(undefined);
   const [pickupDate, setPickupDate] = useState("");
   const [pickupTime, setPickupTime] = useState(undefined);
@@ -53,8 +53,8 @@ export default function NewLoad({
       pallet_count: pallets,
       temperature,
       equipment_id: equipmentType,
-      truck_status_id: 50,
-      load_status_id: 23,
+      truck_status_id: 85,
+      load_status_id: 38,
       commodity,
       notes,
       driver_name: driverName,
@@ -113,6 +113,7 @@ export default function NewLoad({
     console.log(newLoad);
     console.log(newOrigin);
   };
+
   return (
     <>
       <Container className="mt-5">

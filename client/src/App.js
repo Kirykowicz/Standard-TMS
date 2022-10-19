@@ -35,13 +35,17 @@ function App() {
   //   });
   // }, []);
 
+  // useEffect(() => {
+  //   fetch("/loads")
+  //     .then((res) => res.json())
+  //     .then(setLoads);
+  // }, []);
+
   useEffect(() => {
     fetch("/loads")
       .then((res) => res.json())
       .then(setLoads);
-  }, []);
 
-  useEffect(() => {
     fetch("/sites")
       .then((res) => res.json())
       .then(setSites);
@@ -68,7 +72,6 @@ function App() {
   }, []);
 
   // if (!user) return <Login onLogin={setUser} />;
-
   return (
     <>
       {/* <Navbar setUser={setUser} /> */}
@@ -93,6 +96,8 @@ function App() {
               equipment={equipment}
               users={users}
               feeTypes={feeTypes}
+              loads={loads}
+              setLoads={setLoads}
             />
           }
         />
