@@ -12,6 +12,8 @@ export default function NewLoad({
   equipment,
   users,
   feeTypes,
+  loads,
+  setLoads,
 }) {
   const [customerId, setCustomerId] = useState(19);
   const [carrierId, setCarrierId] = useState(15);
@@ -67,7 +69,46 @@ export default function NewLoad({
       site_id: originId,
       date: pickupDate,
       time: pickupTime,
+      notes: pickupNotes,
     };
+
+    fetch("/loads", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newLoad),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        fetch("/stops", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            load_id: res.id,
+            site_id: originId,
+            date: pickupDate,
+            time: pickupTime,
+            notes: pickupNotes,
+          }),
+        });
+        fetch("/stops", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            load_id: res.id,
+            site_id: destinationId,
+            date: deliverDate,
+            time: deliveryTime,
+            notes: deliveryNotes,
+          }),
+        });
+        setLoads([...loads, res]);
+      });
 
     console.log(newLoad);
     console.log(newOrigin);

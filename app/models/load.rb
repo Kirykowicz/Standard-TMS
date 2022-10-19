@@ -10,4 +10,5 @@ class Load < ApplicationRecord
     belongs_to :equipment 
     has_many :check_calls 
     has_one :carrier_rep
+    has_one :customer_rep 
 end

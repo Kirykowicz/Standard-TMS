@@ -23,4 +23,9 @@ class LoadSerializer < ActiveModel::Serializer
   def carrier_rep 
     object.carrier_rep.user 
   end
+
+  # def customer_rep
+  #   object.customer_rep.user
+  # end
+  
 end

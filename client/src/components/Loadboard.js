@@ -3,14 +3,14 @@ import Container from "react-bootstrap/Container";
 import LoadboardRow from "./LoadboardRow";
 import { useState, useEffect } from "react";
 
-export default function Loadboard() {
-  const [loads, setLoads] = useState([]);
+export default function Loadboard({ loads, setLoads }) {
+  //   const [loads, setLoads] = useState([]);
 
-  useEffect(() => {
-    fetch("/loads")
-      .then((res) => res.json())
-      .then((res) => setLoads(res));
-  }, []);
+  //   useEffect(() => {
+  //     fetch("/loads")
+  //       .then((res) => res.json())
+  //       .then((res) => setLoads(res));
+  //   }, []);
   return (
     <>
       <Container fluid>

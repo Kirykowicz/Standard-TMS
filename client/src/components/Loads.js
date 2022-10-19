@@ -10,6 +10,8 @@ export default function Loads({
   equipment,
   users,
   feeTypes,
+  loads,
+  setLoads,
 }) {
   return (
     <>
@@ -27,6 +29,8 @@ export default function Loads({
               equipment={equipment}
               users={users}
               feeTypes={feeTypes}
+              loads={loads}
+              setLoads={setLoads}
             />
           </Tab>
           <Tab eventKey="SearchEdit" title="Search or Edit a Load">

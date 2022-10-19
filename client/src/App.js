@@ -22,6 +22,7 @@ function App() {
   const [equipment, setEquipment] = useState([]);
   const [users, setUsers] = useState([]);
   const [feeTypes, setFeeTypes] = useState([]);
+  const [loads, setLoads] = useState([]);
 
   // useEffect(() => {
   //   // auto-login
@@ -33,6 +34,12 @@ function App() {
   //     }
   //   });
   // }, []);
+
+  useEffect(() => {
+    fetch("/loads")
+      .then((res) => res.json())
+      .then(setLoads);
+  }, []);
 
   useEffect(() => {
     fetch("/sites")
@@ -67,7 +74,11 @@ function App() {
       {/* <Navbar setUser={setUser} /> */}
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Loadboard />} />
+        <Route
+          exact
+          path="/"
+          element={<Loadboard loads={loads} setLoads={setLoads} />}
+        />
         <Route path="/customers" element={<Customers />} />
         <Route path="/carriers" element={<Carriers />} />
         <Route path="/history" element={<History />} />
