@@ -40,6 +40,7 @@ site1 = Site.create(name: "Steel of West Virginia, Inc.", city: "Huntington", st
 site2 = Site.create(name: "Gelita USA - Sergeant Bluff IA", city: "Sergeant Bluff", state: "IA", address: "2445 Port Neal Rd", zip: 51054, contact_name: "Gina Swanson", contact_email: "Swanson@fameemail.com", contact_phone: "712-943-5516")
 site3 = Site.create(name: "Gelita USA - Calumet City IL", city: "Calumet City", state: "IL", address: "10 Wentworth Ave", zip: 60409, contact_name: "Randy", contact_email: "randy@notrealemail.com", contact_phone: "708-891-8405")
 site4 = Site.create(name: "ADM - Decatur IL", city: "Decatur", state: "IL", address: "4666 East Faries Parkway", zip: 62526, contact_name: "Steve", contact_email: "Steve@fakeemail.com", contact_phone: "217-424-5200")
+site5 = Site.create(name: "Unassigned", city: "Unassigned", state: "Unassigned", address: "Unassigned", zip: 00000, contact_name: "Unassigned", contact_email: "Unassigned", contact_phone: "000-000-0000")
 puts 'finished seeding sites'
 
 puts 'seeding fees_types'

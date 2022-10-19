@@ -13,29 +13,64 @@ export default function NewLoad({
   users,
   feeTypes,
 }) {
-  const [customerId, setCustomerId] = useState(null);
-  const [carrierId, setCarrierId] = useState(null);
-  const [originId, setOriginId] = useState(null);
-  const [pickupDate, setPickupDate] = useState(null);
-  const [pickupTime, setPickupTime] = useState(null);
-  const [destinationId, setDestinationId] = useState(null);
-  const [deliverDate, setDeliveryDate] = useState(null);
-  const [deliveryTime, setDeliveryTime] = useState(null);
-  const [equipmentType, setEquipmentType] = useState(null);
-  const [commodity, setCommodity] = useState(null);
-  const [weight, setWeight] = useState(null);
-  const [temperature, setTemperature] = useState(null);
-  const [pallets, setPallets] = useState(null);
-  const [equipmentLength, setEquipmentLength] = useState(null);
-  const [carrierRep, setCarrierRep] = useState(null);
-  const [customerRep, setCustomerRep] = useState(null);
-  const [customerFeeType, setCustomerFeeType] = useState(null);
-  const [customerFee, setCustomerFee] = useState(null);
-  const [carrierFeeType, setCarrierFeeType] = useState(null);
-  const [carrierFee, setCarrierFee] = useState(null);
+  const [customerId, setCustomerId] = useState(19);
+  const [carrierId, setCarrierId] = useState(15);
+  const [originId, setOriginId] = useState(undefined);
+  const [pickupDate, setPickupDate] = useState("");
+  const [pickupTime, setPickupTime] = useState(undefined);
+  const [pickupNotes, setPickupNotes] = useState("");
+  const [destinationId, setDestinationId] = useState(undefined);
+  const [deliverDate, setDeliveryDate] = useState("");
+  const [deliveryTime, setDeliveryTime] = useState(undefined);
+  const [deliveryNotes, setDeliveryNotes] = useState("");
+  const [equipmentType, setEquipmentType] = useState(undefined);
+  const [commodity, setCommodity] = useState("");
+  const [weight, setWeight] = useState(undefined);
+  const [temperature, setTemperature] = useState(undefined);
+  const [pallets, setPallets] = useState(undefined);
+  const [equipmentLength, setEquipmentLength] = useState(undefined);
+  const [carrierRep, setCarrierRep] = useState(undefined);
+  const [customerRep, setCustomerRep] = useState(undefined);
+  const [customerFeeType, setCustomerFeeType] = useState(undefined);
+  const [customerFee, setCustomerFee] = useState(undefined);
+  const [carrierFeeType, setCarrierFeeType] = useState(undefined);
+  const [carrierFee, setCarrierFee] = useState(undefined);
+  const [notes, setNotes] = useState("");
+  const [driverName, setDriverName] = useState("");
+  const [driverCell, setDriverCell] = useState("");
+  const [truckNumber, setTruckNumber] = useState("");
+  const [trailerNumber, setTrailerNumber] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let newLoad = {
+      customer_id: customerId,
+      carrier_id: carrierId,
+      weight,
+      pallet_count: pallets,
+      temperature,
+      equipment_id: equipmentType,
+      truck_status_id: 50,
+      load_status_id: 23,
+      commodity,
+      notes,
+      driver_name: driverName,
+      driver_cell: driverCell,
+      truck_number: truckNumber,
+      trailer_number: trailerNumber,
+      equipment_lenght: equipmentLength,
+    };
+
+    let newOrigin = {
+      load_id: 2,
+      site_id: originId,
+      date: pickupDate,
+      time: pickupTime,
+    };
+
+    console.log(newLoad);
+    console.log(newOrigin);
   };
   return (
     <>
@@ -110,6 +145,17 @@ export default function NewLoad({
                 />
               </Form.Group>
             </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Pickup Number / Notes</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={1}
+                  value={pickupNotes}
+                  onChange={(e) => setPickupNotes(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
           </Row>
           <Row>
             <Col>
@@ -146,6 +192,17 @@ export default function NewLoad({
                   placeholder="Time"
                   value={deliveryTime}
                   onChange={(e) => setDeliveryTime(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Delivery Number / Notes</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={1}
+                  value={deliveryNotes}
+                  onChange={(e) => setDeliveryNotes(e.target.value)}
                 />
               </Form.Group>
             </Col>
@@ -224,12 +281,63 @@ export default function NewLoad({
           </Row>
           <Row>
             <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Driver Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Name"
+                  value={driverName}
+                  onChange={(e) => setDriverName(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Driver Cell</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Phone Number"
+                  value={driverCell}
+                  onChange={(e) => setDriverCell(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Truck Number</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="#"
+                  value={truckNumber}
+                  onChange={(e) => setTruckNumber(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Trailer Number</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="#"
+                  value={trailerNumber}
+                  onChange={(e) => setTrailerNumber(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
                 <Form.Label>Load Notes</Form.Label>
-                <Form.Control as="textarea" rows={8} />
+                <Form.Control
+                  as="textarea"
+                  rows={8}
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                />
               </Form.Group>
             </Col>
             <Col>
