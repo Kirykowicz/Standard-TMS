@@ -123,10 +123,13 @@ export default function NewLoad({
             user_id: +customerRep,
           }),
         });
-        setLoads([...loads, res]);
+        fetch(`/loads/${res.id}`)
+          .then((result) => result.json())
+          .then((result) => {
+            console.log(result);
+            setLoads([...loads, result]);
+          });
       });
-    console.log(newLoad);
-    console.log(newOrigin);
   };
 
   return (

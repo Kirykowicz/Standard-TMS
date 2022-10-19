@@ -14,9 +14,9 @@ export default function Loadboard({ loads, setLoads }) {
   return (
     <>
       <Container fluid>
-        <Table striped hover>
+        <Table hover bordered size="sm">
           <thead>
-            <tr>
+            <tr className="bg-primary text-white mb-5" bordered>
               <th>Load #</th>
               <th>Load Status</th>
               <th>Truck Status</th>
