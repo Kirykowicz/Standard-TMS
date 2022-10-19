@@ -17,59 +17,55 @@ export default function NewLoad({
 }) {
   const [customerId, setCustomerId] = useState(39);
   const [carrierId, setCarrierId] = useState(30);
-  const [originId, setOriginId] = useState(undefined);
-  const [pickupDate, setPickupDate] = useState("");
-  const [pickupTime, setPickupTime] = useState(undefined);
-  const [pickupNotes, setPickupNotes] = useState("");
-  const [destinationId, setDestinationId] = useState(undefined);
-  const [deliverDate, setDeliveryDate] = useState("");
-  const [deliveryTime, setDeliveryTime] = useState(undefined);
-  const [deliveryNotes, setDeliveryNotes] = useState("");
-  const [equipmentType, setEquipmentType] = useState(undefined);
-  const [commodity, setCommodity] = useState("");
-  const [weight, setWeight] = useState(undefined);
-  const [temperature, setTemperature] = useState(undefined);
-  const [pallets, setPallets] = useState(undefined);
-  const [equipmentLength, setEquipmentLength] = useState(undefined);
-  const [carrierRep, setCarrierRep] = useState(undefined);
-  const [customerRep, setCustomerRep] = useState(undefined);
-  const [customerFeeType, setCustomerFeeType] = useState(undefined);
-  const [customerFee, setCustomerFee] = useState(undefined);
-  const [carrierFeeType, setCarrierFeeType] = useState(undefined);
-  const [carrierFee, setCarrierFee] = useState(undefined);
-  const [notes, setNotes] = useState("");
-  const [driverName, setDriverName] = useState("");
-  const [driverCell, setDriverCell] = useState("");
-  const [truckNumber, setTruckNumber] = useState("");
-  const [trailerNumber, setTrailerNumber] = useState("");
+  const [originId, setOriginId] = useState();
+  const [pickupDate, setPickupDate] = useState();
+  const [pickupTime, setPickupTime] = useState("");
+  const [pickupNotes, setPickupNotes] = useState();
+  const [destinationId, setDestinationId] = useState();
+  const [deliverDate, setDeliveryDate] = useState();
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [deliveryNotes, setDeliveryNotes] = useState();
+  const [equipmentType, setEquipmentType] = useState();
+  const [commodity, setCommodity] = useState();
+  const [weight, setWeight] = useState();
+  const [temperature, setTemperature] = useState();
+  const [pallets, setPallets] = useState();
+  const [equipmentLength, setEquipmentLength] = useState();
+  const [carrierRep, setCarrierRep] = useState();
+  const [customerRep, setCustomerRep] = useState();
+  const [customerFeeType, setCustomerFeeType] = useState();
+  const [customerFee, setCustomerFee] = useState();
+  const [carrierFeeType, setCarrierFeeType] = useState();
+  const [carrierFee, setCarrierFee] = useState();
+  const [notes, setNotes] = useState();
+  const [driverName, setDriverName] = useState();
+  const [driverCell, setDriverCell] = useState();
+  const [truckNumber, setTruckNumber] = useState();
+  const [trailerNumber, setTrailerNumber] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let newLoad = {
-      customer_id: customerId,
-      carrier_id: carrierId,
-      weight,
-      pallet_count: pallets,
-      temperature,
-      equipment_id: equipmentType,
+      customer_id: +customerId,
+      carrier_id: +carrierId,
+      weight: +weight,
+      pallet_count: +pallets,
+      temperature: +temperature,
+      equipment_id: +equipmentType,
       truck_status_id: 85,
       load_status_id: 38,
       commodity,
       notes,
       driver_name: driverName,
-      driver_cell: driverCell,
-      truck_number: truckNumber,
-      trailer_number: trailerNumber,
-      equipment_lenght: equipmentLength,
+      driver_cell: +driverCell,
+      truck_number: +truckNumber,
+      trailer_number: +trailerNumber,
+      equipment_lenght: +equipmentLength,
     };
 
     let newOrigin = {
-      load_id: 2,
-      site_id: originId,
-      date: pickupDate,
-      time: pickupTime,
-      notes: pickupNotes,
+      site_id: +originId,
     };
 
     fetch("/loads", {
@@ -87,8 +83,8 @@ export default function NewLoad({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            load_id: res.id,
-            site_id: originId,
+            load_id: +res.id,
+            site_id: +originId,
             date: pickupDate,
             time: pickupTime,
             notes: pickupNotes,
@@ -100,16 +96,35 @@ export default function NewLoad({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            load_id: res.id,
-            site_id: destinationId,
+            load_id: +res.id,
+            site_id: +destinationId,
             date: deliverDate,
             time: deliveryTime,
             notes: deliveryNotes,
           }),
         });
+        fetch("/carrier_reps", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            load_id: +res.id,
+            user_id: +carrierRep,
+          }),
+        });
+        fetch("/customer_reps", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            load_id: +res.id,
+            user_id: +customerRep,
+          }),
+        });
         setLoads([...loads, res]);
       });
-
     console.log(newLoad);
     console.log(newOrigin);
   };

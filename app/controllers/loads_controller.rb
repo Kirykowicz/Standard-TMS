@@ -11,7 +11,7 @@ class LoadsController < ApplicationController
     
     def create 
         load = Load.create! load_params
-        render json: load, status: :created 
+        render json: load.to_json(only: [:id]) 
     end
 
     def update 
