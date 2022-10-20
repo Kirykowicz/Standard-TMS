@@ -82,7 +82,12 @@ function App() {
           path="/"
           element={<Loadboard loads={loads} setLoads={setLoads} />}
         />
-        <Route path="/customers" element={<Customers />} />
+        <Route
+          path="/customers"
+          element={
+            <Customers customers={customers} setCustomers={setCustomers} />
+          }
+        />
         <Route path="/carriers" element={<Carriers />} />
         <Route path="/history" element={<History />} />
         <Route path="/sites" element={<Sites />} />
