@@ -15,7 +15,7 @@ export default function Customers({ customers, setCustomers }) {
           <NewCustomer customers={customers} setCustomer={setCustomers} />
         </Tab>
         <Tab eventKey="SearchEdit" title="Search or Edit a Customer">
-          <h1>My name is robert</h1>
+          <h1>Under Construction</h1>
         </Tab>
       </Tabs>
     </Container>
