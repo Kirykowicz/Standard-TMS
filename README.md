@@ -1,9 +1,11 @@
 # README
 
-To run Standard TMS:
+To get started, view and interact with the application in the browswer, run the following:
 
-in the terminal run: rails s
+$ bundle install
+$ rails db:migrate db:seed
+$ npm install --prefix client
 
-cd to the client directory and run:
+$ rails s
 
-npm start
+$ npm start --prefix client

@@ -1,6 +1,7 @@
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Container from "react-bootstrap/Container";
+import NewCustomer from "./NewCustomer";
 
 export default function Customers() {
   return (
@@ -11,7 +12,7 @@ export default function Customers() {
         className="mb-3"
       >
         <Tab eventKey="addCustomer" title="Add a Customer">
-          <h1>Hello World </h1>
+          <NewCustomer />
         </Tab>
         <Tab eventKey="SearchEdit" title="Search or Edit a Customer">
           <h1>My name is robert</h1>
