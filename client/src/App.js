@@ -93,7 +93,10 @@ function App() {
           element={<Carriers carriers={carriers} setCarriers={setCarriers} />}
         />
         <Route path="/history" element={<History />} />
-        <Route path="/sites" element={<Sites />} />
+        <Route
+          path="/sites"
+          element={<Sites sites={sites} setSites={setSites} />}
+        />
         <Route
           path="/loads"
           element={
