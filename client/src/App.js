@@ -88,7 +88,10 @@ function App() {
             <Customers customers={customers} setCustomers={setCustomers} />
           }
         />
-        <Route path="/carriers" element={<Carriers />} />
+        <Route
+          path="/carriers"
+          element={<Carriers carriers={carriers} setCarriers={setCarriers} />}
+        />
         <Route path="/history" element={<History />} />
         <Route path="/sites" element={<Sites />} />
         <Route
