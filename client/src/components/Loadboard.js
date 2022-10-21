@@ -1,3 +1,5 @@
+// This component renders a table with individual load details per row.
+
 import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 import LoadboardRow from "./LoadboardRow";
