@@ -4,11 +4,14 @@ import Button from "react-bootstrap/esm/Button";
 export default function IndividualLoad({
   setViewIndividualLoad,
   individualLoad,
+  loads,
+  setLoads,
 }) {
   function handleDelete() {
     fetch(`/loads/${individualLoad.id}`, {
       method: "DELETE",
     });
+    setLoads(loads.filter((load) => load.id !== individualLoad.id));
     setViewIndividualLoad(false);
   }
   return (

@@ -75,6 +75,8 @@ function App() {
       <IndividualLoad
         setViewIndividualLoad={setViewIndividualLoad}
         individualLoad={individualLoad}
+        loads={loads}
+        setLoads={setLoads}
       />
     );
   return (
