@@ -14,6 +14,9 @@ export default function NewLoad({
   feeTypes,
   loads,
   setLoads,
+  setViewIndividualLoad,
+  individualLoad,
+  setIndividualLoad,
 }) {
   const [customerId, setCustomerId] = useState(39);
   const [carrierId, setCarrierId] = useState(30);
@@ -127,6 +130,8 @@ export default function NewLoad({
           .then((result) => result.json())
           .then((result) => {
             console.log(result);
+            setIndividualLoad(result);
+            setViewIndividualLoad(true);
             setLoads([...loads, result]);
           });
       });

@@ -25,6 +25,8 @@ function App() {
   const [users, setUsers] = useState([]);
   const [feeTypes, setFeeTypes] = useState([]);
   const [loads, setLoads] = useState([]);
+  const [truckStatuses, setTruckStatuses] = useState([]);
+  const [loadStatuses, setLoadStatuses] = useState([]);
 
   // useEffect(() => {
   //   // auto-login
@@ -65,6 +67,14 @@ function App() {
     fetch("/fee_types")
       .then((res) => res.json())
       .then(setFeeTypes);
+
+    fetch("/truck_statuses")
+      .then((res) => res.json())
+      .then(setTruckStatuses);
+
+    fetch("/load_statuses")
+      .then((res) => res.json())
+      .then(setLoadStatuses);
   }, []);
 
   // if (!user) return <Login onLogin={setUser} />;
@@ -83,6 +93,8 @@ function App() {
         equipment={equipment}
         users={users}
         feeTypes={feeTypes}
+        loadStatuses={loadStatuses}
+        truckStatuses={truckStatuses}
       />
     );
   return (
@@ -129,6 +141,9 @@ function App() {
               feeTypes={feeTypes}
               loads={loads}
               setLoads={setLoads}
+              setViewIndividualLoad={setViewIndividualLoad}
+              individualLoad={individualLoad}
+              setIndividualLoad={setIndividualLoad}
             />
           }
         />

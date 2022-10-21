@@ -4,6 +4,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import CloseButton from "react-bootstrap/CloseButton";
 
 export default function EditLoad({
   individualLoad,
@@ -15,6 +16,9 @@ export default function EditLoad({
   feeTypes,
   loads,
   setLoads,
+  setViewIndividualLoad,
+  loadStatuses,
+  truckStatuses,
 }) {
   const [customerId, setCustomerId] = useState(39);
   const [carrierId, setCarrierId] = useState(30);
@@ -43,6 +47,8 @@ export default function EditLoad({
   const [driverCell, setDriverCell] = useState();
   const [truckNumber, setTruckNumber] = useState();
   const [trailerNumber, setTrailerNumber] = useState();
+  const [loadStatus, setLoadStatus] = useState();
+  const [truckStatus, setTruckStatus] = useState();
   console.log(individualLoad);
 
   function handleEdit(e) {
@@ -50,8 +56,9 @@ export default function EditLoad({
   }
   return (
     <>
+      <CloseButton onClick={() => setViewIndividualLoad(false)}></CloseButton>
       <Container>
-        <h1 className="text-center mb-5">Summary</h1>
+        <h2 className="text-center mb-5 text-primary">Summary</h2>
         <Row>
           <Col>
             <h4 className="text-primary">
@@ -191,10 +198,49 @@ export default function EditLoad({
               </span>
             </h4>
           </Col>
+          <Col></Col>
         </Row>
       </Container>
+      <h2 className="text-center mb-5 text-primary">Edit</h2>
       <Container className="mt-5">
         <Form onSubmit={handleEdit}>
+          <Row>
+            <Col>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Load Status</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      value={loadStatus}
+                      onChange={(e) => setLoadStatus(e.target.value)}
+                    >
+                      {/* <option>Choose a Customer</option> */}
+                      {loadStatuses.map((status) => (
+                        <option value={status.id}>{status.status}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Truck Status</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      value={truckStatus}
+                      onChange={(e) => setTruckStatus(e.target.value)}
+                    >
+                      {/* <option>Choose a Customer</option> */}
+                      {truckStatuses.map((status) => (
+                        <option value={status.id}>{status.status}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              </Row>
+            </Col>
+            <Col></Col>
+          </Row>
           <Row>
             <Col>
               <Form.Group className="mb-3">

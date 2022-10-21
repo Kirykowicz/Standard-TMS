@@ -12,6 +12,9 @@ export default function Loads({
   feeTypes,
   loads,
   setLoads,
+  setViewIndividualLoad,
+  individualLoad,
+  setIndividualLoad,
 }) {
   return (
     <>
@@ -31,6 +34,9 @@ export default function Loads({
               feeTypes={feeTypes}
               loads={loads}
               setLoads={setLoads}
+              setViewIndividualLoad={setViewIndividualLoad}
+              individualLoad={individualLoad}
+              setIndividualLoad={setIndividualLoad}
             />
           </Tab>
           <Tab eventKey="SearchEdit" title="Search or Edit a Load">

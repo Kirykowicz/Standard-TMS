@@ -1,7 +1,7 @@
 export default function History() {
   return (
     <>
-      <h1>History tutaj</h1>
+      <h1>Under Construction</h1>
     </>
   );
 }
