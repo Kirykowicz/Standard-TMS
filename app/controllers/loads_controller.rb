@@ -20,6 +20,12 @@ class LoadsController < ApplicationController
         render json: load, status: :accepted 
     end
 
+    def destroy 
+        load = Load.find params[:id]
+        load.destroy 
+        head :no_content 
+    end
+
 
     private 
 

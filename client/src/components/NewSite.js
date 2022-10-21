@@ -29,7 +29,7 @@ export default function NewSite({ sites, setSites }) {
       contact_phone,
     };
 
-    fetch("/carriers", {
+    fetch("/sites", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
