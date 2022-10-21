@@ -1,8 +1,16 @@
 import Container from "react-bootstrap/esm/Container";
-export default function LoadboardRow({ load }) {
+export default function LoadboardRow({
+  load,
+  setViewIndividualLoad,
+  setIndividualLoad,
+}) {
+  function handleClick() {
+    setViewIndividualLoad(true);
+    setIndividualLoad(load);
+  }
   return (
     <>
-      <tr>
+      <tr onClick={handleClick}>
         <th>{load.id}</th>
         <th>{load.load_status}</th>
         <th>{load.truck_status}</th>

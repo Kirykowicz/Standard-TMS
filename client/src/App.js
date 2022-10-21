@@ -12,10 +12,12 @@ import Carriers from "./components/Carriers";
 import History from "./components/History";
 import Sites from "./components/Sites";
 import Loads from "./components/Loads";
+import IndividualLoad from "./components/IndividualLoad";
 
 function App() {
   // const [user, setUser] = useState(null);
-
+  const [viewIndividualLoad, setViewIndividualLoad] = useState(false);
+  const [individualLoad, setIndividualLoad] = useState({});
   const [sites, setSites] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [carriers, setCarriers] = useState([]);
@@ -33,12 +35,6 @@ function App() {
   //       });
   //     }
   //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch("/loads")
-  //     .then((res) => res.json())
-  //     .then(setLoads);
   // }, []);
 
   useEffect(() => {
@@ -72,6 +68,15 @@ function App() {
   }, []);
 
   // if (!user) return <Login onLogin={setUser} />;
+
+  // when a load on the load board is clicked, view that individual load
+  if (viewIndividualLoad)
+    return (
+      <IndividualLoad
+        setViewIndividualLoad={setViewIndividualLoad}
+        individualLoad={individualLoad}
+      />
+    );
   return (
     <>
       {/* <Navbar setUser={setUser} /> */}
@@ -80,7 +85,14 @@ function App() {
         <Route
           exact
           path="/"
-          element={<Loadboard loads={loads} setLoads={setLoads} />}
+          element={
+            <Loadboard
+              loads={loads}
+              setLoads={setLoads}
+              setViewIndividualLoad={setViewIndividualLoad}
+              setIndividualLoad={setIndividualLoad}
+            />
+          }
         />
         <Route
           path="/customers"

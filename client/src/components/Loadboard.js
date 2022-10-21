@@ -3,7 +3,12 @@ import Container from "react-bootstrap/Container";
 import LoadboardRow from "./LoadboardRow";
 import { useState, useEffect } from "react";
 
-export default function Loadboard({ loads, setLoads }) {
+export default function Loadboard({
+  loads,
+  setLoads,
+  setViewIndividualLoad,
+  setIndividualLoad,
+}) {
   //   const [loads, setLoads] = useState([]);
 
   //   useEffect(() => {
@@ -35,7 +40,11 @@ export default function Loadboard({ loads, setLoads }) {
           </thead>
           <tbody>
             {loads.map((load) => (
-              <LoadboardRow load={load} />
+              <LoadboardRow
+                load={load}
+                setViewIndividualLoad={setViewIndividualLoad}
+                setIndividualLoad={setIndividualLoad}
+              />
             ))}
           </tbody>
         </Table>
