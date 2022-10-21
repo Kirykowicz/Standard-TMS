@@ -77,6 +77,12 @@ function App() {
         individualLoad={individualLoad}
         loads={loads}
         setLoads={setLoads}
+        customers={customers}
+        carriers={carriers}
+        sites={sites}
+        equipment={equipment}
+        users={users}
+        feeTypes={feeTypes}
       />
     );
   return (

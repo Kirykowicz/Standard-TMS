@@ -6,6 +6,12 @@ export default function IndividualLoad({
   individualLoad,
   loads,
   setLoads,
+  customers,
+  carriers,
+  sites,
+  equipment,
+  users,
+  feeTypes,
 }) {
   function handleDelete() {
     fetch(`/loads/${individualLoad.id}`, {
@@ -17,7 +23,17 @@ export default function IndividualLoad({
   return (
     <>
       <Button onClick={() => setViewIndividualLoad(false)}>Exit</Button>
-      <EditLoad individualLoad={individualLoad}></EditLoad>
+      <EditLoad
+        individualLoad={individualLoad}
+        customers={customers}
+        carriers={carriers}
+        sites={sites}
+        equipment={equipment}
+        users={users}
+        feeTypes={feeTypes}
+        loads={loads}
+        setLoads={setLoads}
+      ></EditLoad>
       <Button onClick={handleDelete}>Delete Load # {individualLoad.id}</Button>
     </>
   );
