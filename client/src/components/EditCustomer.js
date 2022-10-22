@@ -7,16 +7,12 @@ import Col from "react-bootstrap/Col";
 
 export default function EditCustomer({ viewCustomer }) {
   const [customerInfo, setCustomerInfo] = useState({});
-  const [name, setName] = useState(customerInfo.name);
-  const [address, setAddress] = useState(customerInfo.address);
-  const [contact_name, setContact_name] = useState(customerInfo.contact_name);
-  const [contact_email, setContact_email] = useState(
-    customerInfo.contact_email
-  );
-  const [contact_phone, setContact_phone] = useState(
-    customerInfo.contact_phone
-  );
-  const [notes, setNotes] = useState(customerInfo.notes);
+  const [name, setName] = useState();
+  const [address, setAddress] = useState();
+  const [contact_name, setContact_name] = useState();
+  const [contact_email, setContact_email] = useState();
+  const [contact_phone, setContact_phone] = useState();
+  const [notes, setNotes] = useState();
 
   useEffect(() => {
     fetch(`/customers/${viewCustomer}`)
@@ -32,6 +28,7 @@ export default function EditCustomer({ viewCustomer }) {
       address,
       contact_name,
       contact_email,
+      contact_phone,
     };
 
     fetch(`/customers/${viewCustomer}`, {
@@ -44,7 +41,8 @@ export default function EditCustomer({ viewCustomer }) {
       .then((res) => res.json)
       .then(setCustomerInfo);
   }
-  if (customerInfo)
+  if (customerInfo && customerInfo.id != 39)
+    // I added this functionality, if the customer unassigned customer is chosen I do not want that object to be able to be modified. So the edit form will not be rendered.
     return (
       <Container>
         <Row>
@@ -52,7 +50,7 @@ export default function EditCustomer({ viewCustomer }) {
           <Col xs={6}>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.name}</Form.Label>
+                <Form.Label>Name: {customerInfo.name}</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -61,7 +59,7 @@ export default function EditCustomer({ viewCustomer }) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.address}</Form.Label>
+                <Form.Label>Address: {customerInfo.address}</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -70,7 +68,9 @@ export default function EditCustomer({ viewCustomer }) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.contact_name}</Form.Label>
+                <Form.Label>
+                  Contact Name: {customerInfo.contact_name}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -79,7 +79,9 @@ export default function EditCustomer({ viewCustomer }) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.contact_email}</Form.Label>
+                <Form.Label>
+                  Contact Email: {customerInfo.contact_email}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -88,7 +90,9 @@ export default function EditCustomer({ viewCustomer }) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.contact_phone}</Form.Label>
+                <Form.Label>
+                  Contact Phone: {customerInfo.contact_phone}
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder=""
@@ -97,7 +101,7 @@ export default function EditCustomer({ viewCustomer }) {
                 />
               </Form.Group>
               <Form.Group className="mb-3">
-                <Form.Label>{customerInfo.notes}</Form.Label>
+                <Form.Label>Notes: {customerInfo.notes}</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={4}
