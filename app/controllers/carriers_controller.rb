@@ -14,6 +14,12 @@ class CarriersController < ApplicationController
         render json: carrier, status: :created
     end
 
+    def update 
+        carrier = Carrier.find params[:id]
+        carrier.update! carrier_params
+        render json: carrier, status: :ok 
+    end
+
     private 
 
     def carrier_params

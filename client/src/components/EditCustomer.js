@@ -41,6 +41,13 @@ export default function EditCustomer({ viewCustomer }) {
     })
       .then((res) => res.json)
       .then(setCustomerInfo);
+
+    setName("");
+    setAddress("");
+    setContact_name("");
+    setContact_email("");
+    setContact_phone("");
+    setNotes("");
   }
   if (customerInfo && customerInfo.id != 39)
     // I added this functionality, if the customer unassigned customer is chosen I do not want that object to be able to be modified. So the edit form will not be rendered.
