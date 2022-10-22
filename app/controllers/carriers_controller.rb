@@ -4,6 +4,11 @@ class CarriersController < ApplicationController
         render json: Carrier.all, status: :ok 
     end
 
+    def show
+        carrier = Carrier.find params[:id]
+        render json: carrier, status: :ok
+    end
+
     def create 
         carrier = Carrier.create! carrier_params
         render json: carrier, status: :created

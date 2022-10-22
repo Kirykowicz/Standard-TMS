@@ -2,8 +2,14 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Container from "react-bootstrap/Container";
 import NewCarrier from "./NewCarrier";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import EditCarrier from "./EditCarrier";
+import { useState } from "react";
 
 export default function Carriers({ carriers, setCarriers }) {
+  const [viewCarrier, setViewCarrier] = useState(false);
   return (
     <Container>
       <Tabs
@@ -14,8 +20,28 @@ export default function Carriers({ carriers, setCarriers }) {
         <Tab eventKey="addCarrier" title="Add a Carrier">
           <NewCarrier carriers={setCarriers} setCarriers={setCarriers} />
         </Tab>
-        <Tab eventKey="SearchEdit" title="Search or Edit a Carrier">
-          <h1>Under Construction</h1>
+        <Tab eventKey="SearchEdit" title="Edit a Carrier">
+          <Container>
+            <Row>
+              <Col></Col>
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Label>Select a Carrier</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    value={viewCarrier}
+                    onChange={(e) => setViewCarrier(e.target.value)}
+                  >
+                    {carriers.map((carrier) => (
+                      <option value={carrier.id}>{carrier.name}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col></Col>
+            </Row>
+            {viewCarrier ? <EditCarrier viewCarrier={viewCarrier} /> : null}
+          </Container>
         </Tab>
       </Tabs>
     </Container>

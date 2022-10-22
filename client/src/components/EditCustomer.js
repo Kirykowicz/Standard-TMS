@@ -29,6 +29,7 @@ export default function EditCustomer({ viewCustomer }) {
       contact_name,
       contact_email,
       contact_phone,
+      notes,
     };
 
     fetch(`/customers/${viewCustomer}`, {
