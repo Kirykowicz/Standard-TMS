@@ -1,12 +1,12 @@
+import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Container from "react-bootstrap/Container";
 import NewCarrier from "./NewCarrier";
+import EditCarrier from "./EditCarrier";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import EditCarrier from "./EditCarrier";
-import { useState } from "react";
 
 export default function Carriers({ carriers, setCarriers }) {
   const [viewCarrier, setViewCarrier] = useState(false);

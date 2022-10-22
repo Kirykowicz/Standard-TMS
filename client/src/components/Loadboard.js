@@ -30,11 +30,11 @@ export default function Loadboard({
               <th>Customer</th>
               <th>Origin City</th>
               <th>Origin State</th>
-              <th>Ship Date</th>
               <th>Destination City</th>
               <th>Destination State</th>
-              <th>Delivery Date</th>
+              <th>Pickup Date</th>
               <th>Pickup Time</th>
+              <th>Delivery Date</th>
               <th>Delivery Time</th>
               <th>Carrier Rep</th>
               <th>Equipment</th>

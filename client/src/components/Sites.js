@@ -2,8 +2,14 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Container from "react-bootstrap/Container";
 import NewSite from "./NewSite";
+import EditSite from "./EditSite";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { useState } from "react";
 
 export default function Sites({ sites, setSites }) {
+  const [viewSite, setViewSite] = useState(false);
   return (
     <Container>
       <Tabs
@@ -14,8 +20,28 @@ export default function Sites({ sites, setSites }) {
         <Tab eventKey="addSite" title="Add a Site">
           <NewSite sites={sites} setSites={setSites} />
         </Tab>
-        <Tab eventKey="SearchEdit" title="Search or Edit a Site">
-          <h1>Under Construction</h1>
+        <Tab eventKey="SearchEdit" title="Edit a Site">
+          <Container>
+            <Row>
+              <Col></Col>
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Label>Select a Site</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    value={viewSite}
+                    onChange={(e) => setViewSite(e.target.value)}
+                  >
+                    {sites.map((site) => (
+                      <option value={site.id}>{site.name}</option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+              <Col></Col>
+            </Row>
+            {viewSite ? <EditSite viewSite={viewSite} /> : null}
+          </Container>
         </Tab>
       </Tabs>
     </Container>
