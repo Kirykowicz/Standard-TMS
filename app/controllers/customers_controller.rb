@@ -4,9 +4,20 @@ class CustomersController < ApplicationController
         render json: Customer.all, status: :ok 
     end
 
+    def show 
+        customer = Customer.find params[:id]
+        render json: customer, status: :ok
+    end
+
     def create
         customer = Customer.create! customer_params
         render json: customer, status: :created 
+    end
+
+    def update 
+        customer = Customer.find params[:id]
+        customer.update! customer_params
+        render json: customer, status: :ok
     end
 
     private 

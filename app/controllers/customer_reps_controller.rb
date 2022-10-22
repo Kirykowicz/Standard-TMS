@@ -4,6 +4,7 @@ class CustomerRepsController < ApplicationController
         render json: CustomerRep.all, status: :ok 
     end
 
+
     def create 
         rep = CustomerRep.create customer_rep_params
         render json: rep, status: :created 
