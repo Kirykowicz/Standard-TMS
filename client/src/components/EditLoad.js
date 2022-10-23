@@ -5,6 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import CloseButton from "react-bootstrap/CloseButton";
+import Map from "./Map";
 
 export default function EditLoad({
   individualLoad,
@@ -49,7 +50,6 @@ export default function EditLoad({
   const [trailerNumber, setTrailerNumber] = useState();
   const [loadStatus, setLoadStatus] = useState();
   const [truckStatus, setTruckStatus] = useState();
-  console.log(individualLoad);
 
   function handleEdit(e) {
     e.preventDefault();
@@ -57,6 +57,7 @@ export default function EditLoad({
   return (
     <>
       <CloseButton onClick={() => setViewIndividualLoad(false)}></CloseButton>
+      <Map individualLoad={individualLoad} />
       <Container>
         <h2 className="text-center mb-5 text-primary">Summary</h2>
         <Row>

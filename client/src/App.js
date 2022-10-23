@@ -13,6 +13,7 @@ import History from "./components/History";
 import Sites from "./components/Sites";
 import Loads from "./components/Loads";
 import IndividualLoad from "./components/IndividualLoad";
+import Map from "./components/Map";
 
 function App() {
   // const [user, setUser] = useState(null);
@@ -147,6 +148,7 @@ function App() {
             />
           }
         />
+        <Route path="/map" element={<Map />} />
       </Routes>
     </>
   );
