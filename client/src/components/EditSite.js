@@ -50,7 +50,7 @@ export default function EditSite({ viewSite }) {
     setCity("");
     setState("");
     setAddress("");
-    setZip(NaN);
+    setZip();
     setContact_name("");
     setContact_email("");
     setContact_phone("");
