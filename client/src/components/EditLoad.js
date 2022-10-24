@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import CloseButton from "react-bootstrap/CloseButton";
 import Map from "./Map";
+import Table from "react-bootstrap/Table";
 
 export default function EditLoad({
   individualLoad,
@@ -58,8 +59,99 @@ export default function EditLoad({
     <>
       <CloseButton onClick={() => setViewIndividualLoad(false)}></CloseButton>
       <Map individualLoad={individualLoad} />
-      <Container>
-        <h2 className="text-center mb-5 text-primary">Summary</h2>
+      <Container className="mt-5">
+        <Table bordered>
+          <tr>
+            <td className="text-primary">Load Number:</td>
+            <td>{individualLoad.id ? individualLoad.id : "-----"}</td>
+            <td className="text-primary">Customer Email:</td>
+            <td>
+              {individualLoad.customer_contact_email
+                ? individualLoad.customer_contact_email
+                : "-----"}
+            </td>
+            <td className="text-primary">Carrier Phone:</td>
+            <td>
+              {individualLoad.carrier_contact_phone
+                ? individualLoad.carrier_contact_phone
+                : "-----"}
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td className="text-primary">Load Status:</td>
+            <td>
+              {individualLoad.load_status
+                ? individualLoad.load_status
+                : "-----"}
+            </td>
+            <td className="text-primary">Customer Phone:</td>
+            <td>
+              {individualLoad.customer_contact_phone
+                ? individualLoad.customer_contact_phone
+                : "-----"}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td className="text-primary">Truck Status:</td>
+            <td>
+              {individualLoad.truck_status
+                ? individualLoad.truck_status
+                : "-----"}
+            </td>
+            <td className="text-primary">Carrier:</td>
+            <td>
+              {individualLoad.carrier_name
+                ? individualLoad.carrier_name
+                : "-----"}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td className="text-primary">Customer:</td>
+            <td>
+              {individualLoad.customer_name
+                ? individualLoad.customer_name
+                : "-----"}
+            </td>
+            <td className="text-primary">Carrier Contact:</td>
+            <td>
+              {individualLoad.carrier_contact_name
+                ? individualLoad.carrier_contact_name
+                : "-----"}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td className="text-primary">Customer Contact:</td>
+            <td>
+              {individualLoad.customer_contact_name
+                ? individualLoad.customer_contact_name
+                : "-----"}
+            </td>
+            <td className="text-primary">Carrier Email:</td>
+            <td>
+              {individualLoad.carrier_contact_email
+                ? individualLoad.carrier_contact_email
+                : "-----"}
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </Table>
         <Row>
           <Col>
             <h4 className="text-primary">
