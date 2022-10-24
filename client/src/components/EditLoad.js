@@ -64,6 +64,19 @@ export default function EditLoad({
   function handleEdit(e) {
     e.preventDefault();
     let EditLoad = {
+      customer_id: customerId,
+      carrier_id: carrierId,
+      weight,
+      pallet_count: pallets,
+      temperature,
+      equipment_id: equipmentType,
+      truck_status_id: truckStatus,
+      load_status_id: loadStatus,
+      commodity,
+      notes,
+      driver_name: driverName,
+      driver_cell: driverCell,
+      equipment_length: equipmentLength,
       truck_number: truckNumber,
       trailer_number: trailerNumber,
     };
@@ -81,7 +94,20 @@ export default function EditLoad({
         setIndividualLoad(res);
       });
 
+    setCustomerId("");
+    setCarrierId("");
+    setWeight("");
+    setPallets("");
+    setTemperature("");
+    setEquipmentType("");
+    setTruckStatus("");
+    setLoadStatus("");
+    setCommodity("");
+    setNotes("");
+    setDriverName("");
+    setDriverCell("");
     setTrailerNumber("");
+    setTruckNumber("");
   }
 
   return (
