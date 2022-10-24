@@ -14,14 +14,15 @@ export default function IndividualLoad({
   feeTypes,
   loadStatuses,
   truckStatuses,
+  setIndividualLoad,
 }) {
-  function handleDelete() {
-    fetch(`/loads/${individualLoad.id}`, {
-      method: "DELETE",
-    });
-    setLoads(loads.filter((load) => load.id !== individualLoad.id));
-    setViewIndividualLoad(false);
-  }
+  // function handleDelete() {
+  //   fetch(`/loads/${individualLoad.id}`, {
+  //     method: "DELETE",
+  //   });
+  //   setLoads(loads.filter((load) => load.id !== individualLoad.id));
+  //   setViewIndividualLoad(false);
+  // }
   return (
     <>
       {/* <Button onClick={() => setViewIndividualLoad(false)}>Exit</Button> */}
@@ -38,8 +39,11 @@ export default function IndividualLoad({
         setViewIndividualLoad={setViewIndividualLoad}
         loadStatuses={loadStatuses}
         truckStatuses={truckStatuses}
+        setIndividualLoad={setIndividualLoad}
       ></EditLoad>
-      <Button onClick={handleDelete}>Delete Load # {individualLoad.id}</Button>
+      {/* <Button variant="outline-danger" onClick={handleDelete}>
+        Delete Load # {individualLoad.id}
+      </Button> */}
     </>
   );
 }

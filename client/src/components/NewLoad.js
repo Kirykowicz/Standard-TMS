@@ -64,7 +64,7 @@ export default function NewLoad({
       driver_cell: +driverCell,
       truck_number: +truckNumber,
       trailer_number: +trailerNumber,
-      equipment_lenght: +equipmentLength,
+      equipment_length: +equipmentLength,
     };
 
     let newOrigin = {

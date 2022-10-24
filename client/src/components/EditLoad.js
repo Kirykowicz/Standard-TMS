@@ -21,16 +21,17 @@ export default function EditLoad({
   setViewIndividualLoad,
   loadStatuses,
   truckStatuses,
+  setIndividualLoad,
 }) {
-  const [customerId, setCustomerId] = useState(39);
-  const [carrierId, setCarrierId] = useState(30);
+  const [customerId, setCustomerId] = useState();
+  const [carrierId, setCarrierId] = useState();
   const [originId, setOriginId] = useState();
   const [pickupDate, setPickupDate] = useState();
-  const [pickupTime, setPickupTime] = useState("");
+  const [pickupTime, setPickupTime] = useState();
   const [pickupNotes, setPickupNotes] = useState();
   const [destinationId, setDestinationId] = useState();
   const [deliverDate, setDeliveryDate] = useState();
-  const [deliveryTime, setDeliveryTime] = useState("");
+  const [deliveryTime, setDeliveryTime] = useState();
   const [deliveryNotes, setDeliveryNotes] = useState();
   const [equipmentType, setEquipmentType] = useState();
   const [commodity, setCommodity] = useState();
@@ -52,14 +53,49 @@ export default function EditLoad({
   const [loadStatus, setLoadStatus] = useState();
   const [truckStatus, setTruckStatus] = useState();
 
+  function handleDelete() {
+    fetch(`/loads/${individualLoad.id}`, {
+      method: "DELETE",
+    });
+    setLoads(loads.filter((load) => load.id !== individualLoad.id));
+    setViewIndividualLoad(false);
+  }
+
   function handleEdit(e) {
     e.preventDefault();
+    let EditLoad = {
+      truck_number: truckNumber,
+      trailer_number: trailerNumber,
+    };
+
+    fetch(`/loads/${individualLoad.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(EditLoad),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setIndividualLoad(res);
+      });
+
+    setTrailerNumber("");
   }
+
   return (
     <>
-      <CloseButton onClick={() => setViewIndividualLoad(false)}></CloseButton>
       <Map individualLoad={individualLoad} />
       <Container className="mt-5">
+        <Button
+          variant="outline-primary"
+          className="mb-2"
+          onClick={() => setViewIndividualLoad(false)}
+        >
+          Exit Load
+        </Button>
+
         <Table bordered>
           <tr>
             <td className="text-primary">Load Number:</td>
@@ -76,8 +112,8 @@ export default function EditLoad({
                 ? individualLoad.carrier_contact_phone
                 : "-----"}
             </td>
-            <td></td>
-            <td></td>
+            <td className="text-primary">Weight:</td>
+            <td>{individualLoad.weight ? individualLoad.weight : "-----"}</td>
           </tr>
           <tr>
             <td className="text-primary">Load Status:</td>
@@ -92,10 +128,21 @@ export default function EditLoad({
                 ? individualLoad.customer_contact_phone
                 : "-----"}
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td className="text-primary">Customer Rep:</td>
+            <td>
+              {individualLoad.customer_rep.first_name
+                ? individualLoad.customer_rep.first_name
+                : "-----"}{" "}
+              {individualLoad.customer_rep.last_name
+                ? individualLoad.customer_rep.last_name
+                : "-----"}
+            </td>
+            <td className="text-primary">Pallet Count:</td>
+            <td>
+              {individualLoad.pallet_count
+                ? individualLoad.pallet_count
+                : "-----"}
+            </td>
           </tr>
           <tr>
             <td className="text-primary">Truck Status:</td>
@@ -110,10 +157,25 @@ export default function EditLoad({
                 ? individualLoad.carrier_name
                 : "-----"}
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td className="text-primary">Carrier Rep:</td>
+            <td>
+              {individualLoad.carrier_rep.first_name
+                ? individualLoad.carrier_rep.first_name
+                : "-----"}{" "}
+              {individualLoad.carrier_rep.last_name
+                ? individualLoad.carrier_rep.last_name
+                : "-----"}
+            </td>
+            <td className="text-primary">Driver Name / Cell:</td>
+            <td>
+              {individualLoad.driver_name
+                ? individualLoad.driver_name
+                : "-----"}
+              :{" "}
+              {individualLoad.driver_cell
+                ? individualLoad.driver_cell
+                : "-----"}
+            </td>
           </tr>
           <tr>
             <td className="text-primary">Customer:</td>
@@ -128,10 +190,17 @@ export default function EditLoad({
                 ? individualLoad.carrier_contact_name
                 : "-----"}
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td className="text-primary">Equipment / Temperature:</td>
+            <td>
+              {individualLoad.equipment ? individualLoad.equipment : "-----"}:{" "}
+              {individualLoad.temperature ? individualLoad.temperature : "Dry"}
+            </td>
+            <td className="text-primary">Truck Number:</td>
+            <td>
+              {individualLoad.truck_number
+                ? individualLoad.truck_number
+                : "-----"}
+            </td>
           </tr>
           <tr>
             <td className="text-primary">Customer Contact:</td>
@@ -146,155 +215,22 @@ export default function EditLoad({
                 ? individualLoad.carrier_contact_email
                 : "-----"}
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td className="text-primary">Length:</td>
+            <td>
+              {individualLoad.equipment_length
+                ? individualLoad.equipment_length
+                : "-----"}
+            </td>
+            <td className="text-primary">Trailer Number:</td>
+            <td>
+              {individualLoad.trailer_number
+                ? individualLoad.trailer_number
+                : "-----"}
+            </td>
           </tr>
         </Table>
-        <Row>
-          <Col>
-            <h4 className="text-primary">
-              Load Number:{" "}
-              <span className="text-dark">
-                {individualLoad.id ? individualLoad.id : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Load Status:{" "}
-              <span className="text-dark">
-                {individualLoad.load_status
-                  ? individualLoad.load_status
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Truck Status:{" "}
-              <span className="text-dark">
-                {individualLoad.truck_status
-                  ? individualLoad.truck_status
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Customer:{" "}
-              <span className="text-dark">
-                {individualLoad.customer_name
-                  ? individualLoad.customer_name
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Carrier:{" "}
-              <span className="text-dark">
-                {individualLoad.carrier_name
-                  ? individualLoad.carrier_name
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Customer Rep:{" "}
-              <span className="text-dark">
-                {individualLoad.customer_rep.first_name
-                  ? individualLoad.customer_rep.first_name
-                  : "-----"}{" "}
-                {individualLoad.customer_rep.last_name
-                  ? individualLoad.customer_rep.last_name
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Carrier Rep:{" "}
-              <span className="text-dark">
-                {individualLoad.carrier_rep.first_name
-                  ? individualLoad.carrier_rep.first_name
-                  : "-----"}{" "}
-                {individualLoad.carrier_rep.last_name
-                  ? individualLoad.carrier_rep.last_name
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Equipment:{" "}
-              <span className="text-dark">
-                {individualLoad.equipment ? individualLoad.equipment : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Length:{" "}
-              <span className="text-dark">
-                {individualLoad.equipment_length
-                  ? individualLoad.equipment_length
-                  : "-----"}
-              </span>
-            </h4>
-          </Col>
-          <Col>
-            <h4 className="text-primary">
-              Commodity:{" "}
-              <span className="text-dark">
-                {individualLoad.commodity ? individualLoad.commodity : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Temperature:{" "}
-              <span className="text-dark">
-                {individualLoad.temperature
-                  ? individualLoad.temperature
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Weight:{" "}
-              <span className="text-dark">
-                {individualLoad.weight ? individualLoad.weight : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Pallet Count:{" "}
-              <span className="text-dark">
-                {individualLoad.pallet_count
-                  ? individualLoad.pallet_count
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Driver Name:{" "}
-              <span className="text-dark">
-                {individualLoad.driver_name
-                  ? individualLoad.driver_name
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Driver Cell:{" "}
-              <span className="text-dark">
-                {individualLoad.driver_cell
-                  ? individualLoad.driver_cell
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Truck Number:{" "}
-              <span className="text-dark">
-                {individualLoad.truck_number
-                  ? individualLoad.truck_number
-                  : "-----"}
-              </span>
-            </h4>
-            <h4 className="text-primary">
-              Trailer Number:{" "}
-              <span className="text-dark">
-                {individualLoad.trailer_number
-                  ? individualLoad.trailer_number
-                  : "-----"}
-              </span>
-            </h4>
-          </Col>
-          <Col></Col>
-        </Row>
       </Container>
-      <h2 className="text-center mb-5 text-primary">Edit</h2>
+
       <Container className="mt-5">
         <Form onSubmit={handleEdit}>
           <Row>
@@ -308,7 +244,7 @@ export default function EditLoad({
                       value={loadStatus}
                       onChange={(e) => setLoadStatus(e.target.value)}
                     >
-                      {/* <option>Choose a Customer</option> */}
+                      <option>-</option>
                       {loadStatuses.map((status) => (
                         <option value={status.id}>{status.status}</option>
                       ))}
@@ -323,7 +259,7 @@ export default function EditLoad({
                       value={truckStatus}
                       onChange={(e) => setTruckStatus(e.target.value)}
                     >
-                      {/* <option>Choose a Customer</option> */}
+                      <option>-</option>
                       {truckStatuses.map((status) => (
                         <option value={status.id}>{status.status}</option>
                       ))}
@@ -343,7 +279,7 @@ export default function EditLoad({
                   value={customerId}
                   onChange={(e) => setCustomerId(e.target.value)}
                 >
-                  {/* <option>Choose a Customer</option> */}
+                  <option>-</option>
                   {customers.map((customer) => (
                     <option value={customer.id}>{customer.name}</option>
                   ))}
@@ -358,6 +294,7 @@ export default function EditLoad({
                   value={carrierId}
                   onChange={(e) => setCarrierId(e.target.value)}
                 >
+                  <option>-</option>
                   {carriers.map((carrier) => (
                     <option value={carrier.id}>{carrier.name}</option>
                   ))}
@@ -696,6 +633,10 @@ export default function EditLoad({
             </Col>
           </Row>
           <Container className="text-end mt-4">
+            <Button variant="danger" className="mr-5" onClick={handleDelete}>
+              Delete Load # {individualLoad.id}
+            </Button>
+
             <Button variant="primary" type="submit" align="center">
               Edit Load
             </Button>

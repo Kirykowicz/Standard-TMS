@@ -96,6 +96,7 @@ function App() {
         feeTypes={feeTypes}
         loadStatuses={loadStatuses}
         truckStatuses={truckStatuses}
+        setIndividualLoad={setIndividualLoad}
       />
     );
   return (
