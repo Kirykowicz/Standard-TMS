@@ -63,7 +63,7 @@ export default function EditLoad({
 
   function handleEdit(e) {
     e.preventDefault();
-    let EditLoad = {
+    let editLoad = {
       customer_id: customerId,
       carrier_id: carrierId,
       weight,
@@ -81,12 +81,19 @@ export default function EditLoad({
       trailer_number: trailerNumber,
     };
 
+    let editOrigin = {
+      site_id: originId,
+      date: pickupDate,
+      time: pickupTime,
+    };
+
+    // patch request to edit details specific to the load object
     fetch(`/loads/${individualLoad.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(EditLoad),
+      body: JSON.stringify(editLoad),
     })
       .then((res) => res.json())
       .then((res) => {
@@ -108,8 +115,22 @@ export default function EditLoad({
     setDriverCell("");
     setTrailerNumber("");
     setTruckNumber("");
+
+    // Patch request to edit the origin
+    fetch(`/stops/${individualLoad.stops[0].id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editOrigin),
+    });
+
+    setOriginId("");
+    setPickupDate("");
+    setPickupTime("");
   }
 
+  console.log(individualLoad);
   return (
     <>
       <Map individualLoad={individualLoad} />
