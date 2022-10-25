@@ -177,7 +177,24 @@ export default function EditLoad({
       },
       body: JSON.stringify(editCarrierRep),
     });
+
     setCarrierRep();
+
+    fetch(`/fees/${individualLoad.fees[0].id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        carrier_rate: carrierFee,
+        customer_rate: customerFee,
+        fee_type_id: customerFeeType,
+      }),
+    });
+
+    setCarrierFee();
+    setCustomerFee();
+    setCustomerFeeType();
   }
   console.log(individualLoad);
 
