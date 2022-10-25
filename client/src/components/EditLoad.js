@@ -206,20 +206,20 @@ export default function EditLoad({
           <Col className="">
             <Button
               variant="outline-primary"
-              className="mb-2"
+              className=""
               onClick={() => setViewIndividualLoad(false)}
             >
               Exit Load
             </Button>
           </Col>
           <Col className="text-end">
-            <Button
-              variant="outline-danger"
-              className="mr-5"
+            <p
+              className="text-danger"
+              style={{ cursor: "pointer" }}
               onClick={handleDelete}
             >
               Delete Load # {individualLoad.id}
-            </Button>
+            </p>
           </Col>
         </Row>
       </Container>
@@ -263,7 +263,7 @@ export default function EditLoad({
             <td></td>
             <td></td>
             <td></td>
-            <td className="text-primary">Margin:</td>
+            <td className="text-warning">Margin:</td>
             <td>
               $
               {individualLoad.fees[0]
@@ -288,9 +288,11 @@ export default function EditLoad({
             <td>{individualLoad.id ? individualLoad.id : "-----"}</td>
             <td className="text-primary">Customer Email:</td>
             <td>
+              (
               {individualLoad.customer_contact_email
                 ? individualLoad.customer_contact_email
                 : "N/A"}
+              )
             </td>
             <td className="text-primary">Carrier Phone:</td>
             <td>
@@ -406,6 +408,24 @@ export default function EditLoad({
                 ? individualLoad.trailer_number
                 : "N/A"}
             </td>
+          </tr>
+          <tr>
+            <td>Origin:</td>
+            <td>{individualLoad.stops[0].site_name}</td>
+            <td>Destination:</td>
+            <td>{individualLoad.stops[1].site_name}</td>
+          </tr>
+          <tr>
+            <td>Pickup Date:</td>
+            <td>{individualLoad.stops[0].date}</td>
+            <td>Deliver Date:</td>
+            <td>{individualLoad.stops[1].date}</td>
+          </tr>
+          <tr>
+            <td>Pickup Time:</td>
+            <td>{individualLoad.stops[0].time}</td>
+            <td>Delivery Time:</td>
+            <td>{individualLoad.stops[1].time}</td>
           </tr>
         </Table>
       </Container>
