@@ -7,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import CloseButton from "react-bootstrap/CloseButton";
 import Map from "./Map";
 import Table from "react-bootstrap/Table";
+import Accordion from "react-bootstrap/Accordion";
+import Modal from "react-bootstrap/Modal";
 
 export default function EditLoad({
   individualLoad,
@@ -207,7 +209,16 @@ export default function EditLoad({
 
   return (
     <>
+      {/* <Container fluid>
+        <Row>
+          <Col></Col>
+          <Col> */}
       <Map individualLoad={individualLoad} />
+      {/* </Col>
+          <Col></Col>
+        </Row>
+      </Container> */}
+
       <Container fluid>
         <Row>
           <Col className="">
@@ -437,380 +448,384 @@ export default function EditLoad({
         </Table>
       </Container>
 
-      <Container className="mt-5">
-        <Form onSubmit={handleEdit}>
-          <Row>
-            <Col>
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Load Status</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={loadStatus}
-                      onChange={(e) => setLoadStatus(e.target.value)}
+      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Edit Load:</Accordion.Header>
+          <Accordion.Body>
+            <Container className="mt-5">
+              <Form onSubmit={handleEdit}>
+                <Row>
+                  <Col>
+                    <Row>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Load Status</Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={loadStatus}
+                            onChange={(e) => setLoadStatus(e.target.value)}
+                          >
+                            <option>-</option>
+                            {loadStatuses.map((status) => (
+                              <option value={status.id}>{status.status}</option>
+                            ))}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Truck Status</Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={truckStatus}
+                            onChange={(e) => setTruckStatus(e.target.value)}
+                          >
+                            <option>-</option>
+                            {truckStatuses.map((status) => (
+                              <option value={status.id}>{status.status}</option>
+                            ))}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col></Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Customer</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={customerId}
+                        onChange={(e) => setCustomerId(e.target.value)}
+                      >
+                        <option>-</option>
+                        {customers.map((customer) => (
+                          <option value={customer.id}>{customer.name}</option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Carrier</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={carrierId}
+                        onChange={(e) => setCarrierId(e.target.value)}
+                      >
+                        <option>-</option>
+                        {carriers.map((carrier) => (
+                          <option value={carrier.id}>{carrier.name}</option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Origin</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={originId}
+                        onChange={(e) => setOriginId(e.target.value)}
+                      >
+                        <option>Choose a Site</option>
+                        {sites.map((site) => (
+                          <option value={site.id}>{site.name}</option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Pickup Date</Form.Label>
+                      <Form.Control
+                        type="date"
+                        placeholder="Date"
+                        value={pickupDate}
+                        onChange={(e) => setPickupDate(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Pickup Time</Form.Label>
+                      <Form.Control
+                        type="time"
+                        placeholder="Time"
+                        value={pickupTime}
+                        onChange={(e) => setPickupTime(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Pickup Number / Notes</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={1}
+                        value={pickupNotes}
+                        onChange={(e) => setPickupNotes(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Destination</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={destinationId}
+                        onChange={(e) => setDestinationId(e.target.value)}
+                      >
+                        <option>Choose a Site</option>
+                        {sites.map((site) => (
+                          <option value={site.id}>{site.name}</option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Delivery Date</Form.Label>
+                      <Form.Control
+                        type="date"
+                        placeholder="Date"
+                        value={deliverDate}
+                        onChange={(e) => setDeliveryDate(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Delivery Time</Form.Label>
+                      <Form.Control
+                        type="time"
+                        placeholder="Time"
+                        value={deliveryTime}
+                        onChange={(e) => setDeliveryTime(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Delivery Number / Notes</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={1}
+                        value={deliveryNotes}
+                        onChange={(e) => setDeliveryNotes(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Equipment</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={equipmentType}
+                        onChange={(e) => setEquipmentType(e.target.value)}
+                      >
+                        <option>Choose Equipment</option>
+                        {equipment.map((eq) => (
+                          <option value={eq.id}>{eq.equipment_type}</option>
+                        ))}
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Length</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="feet"
+                        value={equipmentLength}
+                        onChange={(e) => setEquipmentLength(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Temperature</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Degrees"
+                        value={temperature}
+                        onChange={(e) => setTemperature(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Commodity </Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Description"
+                        value={commodity}
+                        onChange={(e) => setCommodity(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Weight</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="lbs"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Pallet Count</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="#"
+                        value={pallets}
+                        onChange={(e) => setPallets(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Driver Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Name"
+                        value={driverName}
+                        onChange={(e) => setDriverName(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Driver Cell</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Phone Number"
+                        value={driverCell}
+                        onChange={(e) => setDriverCell(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Truck Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="#"
+                        value={truckNumber}
+                        onChange={(e) => setTruckNumber(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Trailer Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="#"
+                        value={trailerNumber}
+                        onChange={(e) => setTrailerNumber(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlTextarea1"
                     >
-                      <option>-</option>
-                      {loadStatuses.map((status) => (
-                        <option value={status.id}>{status.status}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Truck Status</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={truckStatus}
-                      onChange={(e) => setTruckStatus(e.target.value)}
-                    >
-                      <option>-</option>
-                      {truckStatuses.map((status) => (
-                        <option value={status.id}>{status.status}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Customer</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
-                  value={customerId}
-                  onChange={(e) => setCustomerId(e.target.value)}
-                >
-                  <option>-</option>
-                  {customers.map((customer) => (
-                    <option value={customer.id}>{customer.name}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Carrier</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
-                  value={carrierId}
-                  onChange={(e) => setCarrierId(e.target.value)}
-                >
-                  <option>-</option>
-                  {carriers.map((carrier) => (
-                    <option value={carrier.id}>{carrier.name}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Origin</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
-                  value={originId}
-                  onChange={(e) => setOriginId(e.target.value)}
-                >
-                  <option>Choose a Site</option>
-                  {sites.map((site) => (
-                    <option value={site.id}>{site.name}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Pickup Date</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Date"
-                  value={pickupDate}
-                  onChange={(e) => setPickupDate(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Pickup Time</Form.Label>
-                <Form.Control
-                  type="time"
-                  placeholder="Time"
-                  value={pickupTime}
-                  onChange={(e) => setPickupTime(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Pickup Number / Notes</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={1}
-                  value={pickupNotes}
-                  onChange={(e) => setPickupNotes(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Destination</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
-                  value={destinationId}
-                  onChange={(e) => setDestinationId(e.target.value)}
-                >
-                  <option>Choose a Site</option>
-                  {sites.map((site) => (
-                    <option value={site.id}>{site.name}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Delivery Date</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Date"
-                  value={deliverDate}
-                  onChange={(e) => setDeliveryDate(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Delivery Time</Form.Label>
-                <Form.Control
-                  type="time"
-                  placeholder="Time"
-                  value={deliveryTime}
-                  onChange={(e) => setDeliveryTime(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Delivery Number / Notes</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={1}
-                  value={deliveryNotes}
-                  onChange={(e) => setDeliveryNotes(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Equipment</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
-                  value={equipmentType}
-                  onChange={(e) => setEquipmentType(e.target.value)}
-                >
-                  <option>Choose Equipment</option>
-                  {equipment.map((eq) => (
-                    <option value={eq.id}>{eq.equipment_type}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Length</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="feet"
-                  value={equipmentLength}
-                  onChange={(e) => setEquipmentLength(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Temperature</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Degrees"
-                  value={temperature}
-                  onChange={(e) => setTemperature(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Commodity </Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Description"
-                  value={commodity}
-                  onChange={(e) => setCommodity(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Weight</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="lbs"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Pallet Count</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="#"
-                  value={pallets}
-                  onChange={(e) => setPallets(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Driver Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Name"
-                  value={driverName}
-                  onChange={(e) => setDriverName(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Driver Cell</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Phone Number"
-                  value={driverCell}
-                  onChange={(e) => setDriverCell(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Truck Number</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="#"
-                  value={truckNumber}
-                  onChange={(e) => setTruckNumber(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Trailer Number</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="#"
-                  value={trailerNumber}
-                  onChange={(e) => setTrailerNumber(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Load Notes</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={8}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Customer Rep</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={customerRep}
-                      onChange={(e) => setCustomerRep(e.target.value)}
-                    >
-                      <option>Unassigned</option>
-                      {users.map((user) => (
-                        <option value={user.id}>
-                          {user.first_name}
-                          {user.last_name}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Carrier Rep</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={carrierRep}
-                      onChange={(e) => setCarrierRep(e.target.value)}
-                    >
-                      <option>Unassigned</option>
-                      {users.map((user) => (
-                        <option value={user.id}>
-                          {user.first_name}
-                          {user.last_name}
-                        </option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Fee Type</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={customerFeeType}
-                      onChange={(e) => setCustomerFeeType(e.target.value)}
-                    >
-                      {/* <option>Unassigned</option> */}
-                      {feeTypes.map((fee) => (
-                        <option value={fee.id}>{fee.name}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Customer Rate</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Dollars"
-                      value={customerFee}
-                      onChange={(e) => setCustomerFee(e.target.value)}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  {/* <Form.Group className="mb-3">
+                      <Form.Label>Load Notes</Form.Label>
+                      <Form.Control
+                        as="textarea"
+                        rows={8}
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col>
+                    <Row>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Customer Rep</Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={customerRep}
+                            onChange={(e) => setCustomerRep(e.target.value)}
+                          >
+                            <option>Unassigned</option>
+                            {users.map((user) => (
+                              <option value={user.id}>
+                                {user.first_name}
+                                {user.last_name}
+                              </option>
+                            ))}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Carrier Rep</Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={carrierRep}
+                            onChange={(e) => setCarrierRep(e.target.value)}
+                          >
+                            <option>Unassigned</option>
+                            {users.map((user) => (
+                              <option value={user.id}>
+                                {user.first_name}
+                                {user.last_name}
+                              </option>
+                            ))}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Fee Type</Form.Label>
+                          <Form.Select
+                            aria-label="Default select example"
+                            value={customerFeeType}
+                            onChange={(e) => setCustomerFeeType(e.target.value)}
+                          >
+                            {/* <option>Unassigned</option> */}
+                            {feeTypes.map((fee) => (
+                              <option value={fee.id}>{fee.name}</option>
+                            ))}
+                          </Form.Select>
+                        </Form.Group>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Customer Rate</Form.Label>
+                          <Form.Control
+                            type="number"
+                            placeholder="Dollars"
+                            value={customerFee}
+                            onChange={(e) => setCustomerFee(e.target.value)}
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        {/* <Form.Group className="mb-3">
                     <Form.Label>Carrier Rate Type</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
@@ -822,28 +837,31 @@ export default function EditLoad({
                       ))}
                     </Form.Select>
                   </Form.Group> */}
-                </Col>
-                <Col>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Carrier Rate</Form.Label>
-                    <Form.Control
-                      type="number"
-                      placeholder="Dollars"
-                      value={carrierFee}
-                      onChange={(e) => setCarrierFee(e.target.value)}
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Container className="text-end mt-4">
-            <Button variant="primary" type="submit" align="center">
-              Edit Load
-            </Button>
-          </Container>
-        </Form>
-      </Container>
+                      </Col>
+                      <Col>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Carrier Rate</Form.Label>
+                          <Form.Control
+                            type="number"
+                            placeholder="Dollars"
+                            value={carrierFee}
+                            onChange={(e) => setCarrierFee(e.target.value)}
+                          />
+                        </Form.Group>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+                <Container className="text-end mt-4">
+                  <Button variant="primary" type="submit" align="center">
+                    Edit Load
+                  </Button>
+                </Container>
+              </Form>
+            </Container>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </>
   );
 }
