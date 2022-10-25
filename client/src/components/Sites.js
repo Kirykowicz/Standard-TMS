@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function Sites({ sites, setSites }) {
   const [viewSite, setViewSite] = useState(false);
   return (
-    <Container>
+    <Container className="bg-light">
       <Tabs
         defaultActiveKey="addSite"
         id="uncontrolled-tab-example"

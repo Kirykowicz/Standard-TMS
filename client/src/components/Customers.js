@@ -11,7 +11,7 @@ import EditCustomer from "./EditCustomer";
 export default function Customers({ customers, setCustomers }) {
   const [viewCustomer, setViewCustomer] = useState(null);
   return (
-    <Container>
+    <Container className="bg-light">
       <Tabs
         defaultActiveKey="addCustomer"
         id="uncontrolled-tab-example"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -101,56 +101,61 @@ function App() {
     );
   return (
     <>
-      {/* <Navbar setUser={setUser} /> */}
-      <Navbar />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <Loadboard
-              loads={loads}
-              setLoads={setLoads}
-              setViewIndividualLoad={setViewIndividualLoad}
-              setIndividualLoad={setIndividualLoad}
-            />
-          }
-        />
-        <Route
-          path="/customers"
-          element={
-            <Customers customers={customers} setCustomers={setCustomers} />
-          }
-        />
-        <Route
-          path="/carriers"
-          element={<Carriers carriers={carriers} setCarriers={setCarriers} />}
-        />
-        <Route path="/history" element={<History />} />
-        <Route
-          path="/sites"
-          element={<Sites sites={sites} setSites={setSites} />}
-        />
-        <Route
-          path="/loads"
-          element={
-            <Loads
-              customers={customers}
-              carriers={carriers}
-              sites={sites}
-              equipment={equipment}
-              users={users}
-              feeTypes={feeTypes}
-              loads={loads}
-              setLoads={setLoads}
-              setViewIndividualLoad={setViewIndividualLoad}
-              individualLoad={individualLoad}
-              setIndividualLoad={setIndividualLoad}
-            />
-          }
-        />
-        <Route path="/map" element={<Map />} />
-      </Routes>
+      <Container fluid className="bg-white" style={{ height: "100vh" }}>
+        <Container fluid className="text-center">
+          <h1 className="text-secondary">Standard TMS</h1>
+        </Container>
+        {/* <Navbar setUser={setUser} /> */}
+        <NavBar />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <Loadboard
+                loads={loads}
+                setLoads={setLoads}
+                setViewIndividualLoad={setViewIndividualLoad}
+                setIndividualLoad={setIndividualLoad}
+              />
+            }
+          />
+          <Route
+            path="/customers"
+            element={
+              <Customers customers={customers} setCustomers={setCustomers} />
+            }
+          />
+          <Route
+            path="/carriers"
+            element={<Carriers carriers={carriers} setCarriers={setCarriers} />}
+          />
+          <Route path="/history" element={<History />} />
+          <Route
+            path="/sites"
+            element={<Sites sites={sites} setSites={setSites} />}
+          />
+          <Route
+            path="/loads"
+            element={
+              <Loads
+                customers={customers}
+                carriers={carriers}
+                sites={sites}
+                equipment={equipment}
+                users={users}
+                feeTypes={feeTypes}
+                loads={loads}
+                setLoads={setLoads}
+                setViewIndividualLoad={setViewIndividualLoad}
+                individualLoad={individualLoad}
+                setIndividualLoad={setIndividualLoad}
+              />
+            }
+          />
+          <Route path="/map" element={<Map />} />
+        </Routes>
+      </Container>
     </>
   );
 }

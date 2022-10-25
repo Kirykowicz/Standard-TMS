@@ -20,7 +20,7 @@ export default function Loadboard({
   //   }, []);
   return (
     <>
-      <Container fluid>
+      <Container fluid className="bg-light">
         <Table hover bordered size="sm">
           <thead>
             <tr className="bg-primary text-white mb-5" bordered>

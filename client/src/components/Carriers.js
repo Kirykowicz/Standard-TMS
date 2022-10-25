@@ -11,7 +11,7 @@ import Col from "react-bootstrap/Col";
 export default function Carriers({ carriers, setCarriers }) {
   const [viewCarrier, setViewCarrier] = useState(false);
   return (
-    <Container>
+    <Container className="bg-light">
       <Tabs
         defaultActiveKey="addCarrier"
         id="uncontrolled-tab-example"

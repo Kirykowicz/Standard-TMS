@@ -1,7 +1,9 @@
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
 
-function Navbar({ setUser }) {
+function NavBar({ setUser }) {
   function handleLogoutClick() {
     // fetch("/logout", { method: "DELETE" }).then((r) => {
     //   if (r.ok) {
@@ -58,4 +60,4 @@ function Navbar({ setUser }) {
   );
 }
 
-export default Navbar;
+export default NavBar;

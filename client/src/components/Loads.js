@@ -18,7 +18,7 @@ export default function Loads({
 }) {
   return (
     <>
-      <Container>
+      <Container className="bg-light">
         <Tabs
           defaultActiveKey="newLoad"
           id="uncontrolled-tab-example"
