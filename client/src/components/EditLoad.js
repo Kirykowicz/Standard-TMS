@@ -87,6 +87,20 @@ export default function EditLoad({
       time: pickupTime,
     };
 
+    let editDestination = {
+      site_id: destinationId,
+      date: deliverDate,
+      time: deliveryTime,
+    };
+
+    let editCustomerRep = {
+      user_id: customerRep,
+    };
+
+    let editCarrierRep = {
+      user_id: carrierRep,
+    };
+
     // patch request to edit details specific to the load object
     fetch(`/loads/${individualLoad.id}`, {
       method: "PATCH",
@@ -101,22 +115,23 @@ export default function EditLoad({
         setIndividualLoad(res);
       });
 
-    setCustomerId("");
-    setCarrierId("");
-    setWeight("");
-    setPallets("");
-    setTemperature("");
-    setEquipmentType("");
-    setTruckStatus("");
-    setLoadStatus("");
-    setCommodity("");
-    setNotes("");
-    setDriverName("");
-    setDriverCell("");
-    setTrailerNumber("");
-    setTruckNumber("");
+    setCustomerId();
+    setCarrierId();
+    setWeight();
+    setPallets();
+    setTemperature();
+    setEquipmentType();
+    setTruckStatus();
+    setLoadStatus();
+    setCommodity();
+    setNotes();
+    setDriverName();
+    setDriverCell();
+    setTrailerNumber();
+    setTruckNumber();
 
     // Patch request to edit the origin
+
     fetch(`/stops/${individualLoad.stops[0].id}`, {
       method: "PATCH",
       headers: {
@@ -125,12 +140,46 @@ export default function EditLoad({
       body: JSON.stringify(editOrigin),
     });
 
-    setOriginId("");
-    setPickupDate("");
-    setPickupTime("");
+    setOriginId();
+    setPickupDate();
+    setPickupTime();
+
+    fetch(`/stops/${individualLoad.stops[1].id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editDestination),
+    });
+
+    setDestinationId();
+    setDeliveryDate();
+    setDeliveryTime();
+
+    // set customer rep
+
+    fetch(`/customer_reps/${individualLoad.customer_rep.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editCustomerRep),
+    });
+
+    setCustomerRep();
+
+    // set customer rep
+
+    fetch(`/carrier_reps/${individualLoad.carrier_rep.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editCarrierRep),
+    });
+    setCarrierRep();
   }
 
-  console.log(individualLoad);
   return (
     <>
       <Map individualLoad={individualLoad} />
@@ -177,11 +226,11 @@ export default function EditLoad({
             </td>
             <td className="text-primary">Customer Rep:</td>
             <td>
-              {individualLoad.customer_rep.first_name
-                ? individualLoad.customer_rep.first_name
+              {individualLoad.customer_rep_name.first_name
+                ? individualLoad.customer_rep_name.first_name
                 : "-----"}{" "}
-              {individualLoad.customer_rep.last_name
-                ? individualLoad.customer_rep.last_name
+              {individualLoad.customer_rep_name.last_name
+                ? individualLoad.customer_rep_name.last_name
                 : "-----"}
             </td>
             <td className="text-primary">Pallet Count:</td>
@@ -206,11 +255,11 @@ export default function EditLoad({
             </td>
             <td className="text-primary">Carrier Rep:</td>
             <td>
-              {individualLoad.carrier_rep.first_name
-                ? individualLoad.carrier_rep.first_name
+              {individualLoad.carrier_rep_name.first_name
+                ? individualLoad.carrier_rep_name.first_name
                 : "-----"}{" "}
-              {individualLoad.carrier_rep.last_name
-                ? individualLoad.carrier_rep.last_name
+              {individualLoad.carrier_rep_name.last_name
+                ? individualLoad.carrier_rep_name.last_name
                 : "-----"}
             </td>
             <td className="text-primary">Driver Name / Cell:</td>

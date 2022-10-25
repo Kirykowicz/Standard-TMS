@@ -9,6 +9,16 @@ class CustomerRepsController < ApplicationController
         rep = CustomerRep.create customer_rep_params
         render json: rep, status: :created 
     end
+    
+    def show
+        rep = CustomerRep.find params[:id]
+        render json: rep, status: :ok 
+    end
+
+    def update 
+        rep = CustomerRep.find params[:id]
+        rep.update! customer_rep_params
+    end
 
     private 
 

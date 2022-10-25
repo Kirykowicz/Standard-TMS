@@ -39,9 +39,9 @@ export default function Loads({
               setIndividualLoad={setIndividualLoad}
             />
           </Tab>
-          <Tab eventKey="SearchEdit" title="Search or Edit a Load">
+          {/* <Tab eventKey="SearchEdit" title="Search or Edit a Load">
             <h1>Under Construction</h1>
-          </Tab>
+          </Tab> */}
         </Tabs>
       </Container>
     </>

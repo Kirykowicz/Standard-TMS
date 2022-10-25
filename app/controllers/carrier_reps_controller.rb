@@ -9,6 +9,16 @@ class CarrierRepsController < ApplicationController
         render json: rep, status: :created 
     end
 
+    def show
+        rep = CarrierRep.find params[:id]
+        render json: rep, status: :ok 
+    end
+
+    def update 
+        rep = CarrierRep.find params[:id]
+        rep.update! carrier_rep_params
+    end
+
     private 
 
     def carrier_rep_params
