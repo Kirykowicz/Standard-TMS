@@ -179,6 +179,7 @@ export default function EditLoad({
     });
     setCarrierRep();
   }
+  console.log(individualLoad);
 
   return (
     <>
@@ -673,7 +674,7 @@ export default function EditLoad({
               <Row>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>Customer Rate Type</Form.Label>
+                    <Form.Label>Fee Type</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
                       value={customerFeeType}
@@ -700,19 +701,18 @@ export default function EditLoad({
               </Row>
               <Row>
                 <Col>
-                  <Form.Group className="mb-3">
+                  {/* <Form.Group className="mb-3">
                     <Form.Label>Carrier Rate Type</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
                       value={carrierFeeType}
                       onChange={(e) => setCarrierFeeType(e.target.value)}
                     >
-                      {/* <option>Unassigned</option> */}
                       {feeTypes.map((fee) => (
                         <option value={fee.id}>{fee.name}</option>
                       ))}
                     </Form.Select>
-                  </Form.Group>
+                  </Form.Group> */}
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">

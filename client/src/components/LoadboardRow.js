@@ -24,9 +24,10 @@ export default function LoadboardRow({
         <th>{load.stops[1].date ? load.stops[1].date : "-"}</th>
         <th>{load.stops[1].time ? load.stops[1].time : "-"}</th>
         <th>
-          {load.carrier_rep.first_name
-            ? load.carrier_rep.first_name
-            : "unassigned"}
+          {load.carrier_rep_name.first_name
+            ? load.carrier_rep_name.first_name
+            : "unassigned"}{" "}
+          {load.carrier_rep_name.last_name[0]}
         </th>
         <th>{load.equipment}</th>
       </tr>

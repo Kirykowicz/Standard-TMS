@@ -36,10 +36,10 @@ export default function NewLoad({
   const [equipmentLength, setEquipmentLength] = useState();
   const [carrierRep, setCarrierRep] = useState();
   const [customerRep, setCustomerRep] = useState();
-  const [customerFeeType, setCustomerFeeType] = useState();
-  const [customerFee, setCustomerFee] = useState();
+  const [customerFeeType, setCustomerFeeType] = useState(45);
+  const [customerFee, setCustomerFee] = useState(0);
   const [carrierFeeType, setCarrierFeeType] = useState();
-  const [carrierFee, setCarrierFee] = useState();
+  const [carrierFee, setCarrierFee] = useState(0);
   const [notes, setNotes] = useState();
   const [driverName, setDriverName] = useState();
   const [driverCell, setDriverCell] = useState();
@@ -124,6 +124,18 @@ export default function NewLoad({
           body: JSON.stringify({
             load_id: +res.id,
             user_id: +customerRep,
+          }),
+        });
+        fetch("/fees", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            load_id: +res.id,
+            fee_type_id: customerFeeType,
+            customer_rate: customerFee,
+            carrier_rate: carrierFee,
           }),
         });
         fetch(`/loads/${res.id}`)
@@ -447,7 +459,7 @@ export default function NewLoad({
               <Row>
                 <Col>
                   <Form.Group className="mb-3">
-                    <Form.Label>Customer Rate Type</Form.Label>
+                    <Form.Label>Fee Type</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
                       value={customerFeeType}
@@ -474,19 +486,18 @@ export default function NewLoad({
               </Row>
               <Row>
                 <Col>
-                  <Form.Group className="mb-3">
+                  {/* <Form.Group className="mb-3">
                     <Form.Label>Carrier Rate Type</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
                       value={carrierFeeType}
                       onChange={(e) => setCarrierFeeType(e.target.value)}
                     >
-                      {/* <option>Unassigned</option> */}
                       {feeTypes.map((fee) => (
                         <option value={fee.id}>{fee.name}</option>
                       ))}
                     </Form.Select>
-                  </Form.Group>
+                  </Form.Group> */}
                 </Col>
                 <Col>
                   <Form.Group className="mb-3">
