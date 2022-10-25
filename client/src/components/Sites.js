@@ -30,8 +30,11 @@ export default function Sites({ sites, setSites }) {
                   <Form.Select
                     aria-label="Default select example"
                     value={viewSite}
-                    onChange={(e) => setViewSite(e.target.value)}
+                    onChange={(e) => {
+                      setViewSite(e.target.value);
+                    }}
                   >
+                    <option value="+52">Site Unassigned</option>
                     {sites.map((site) => (
                       <option value={site.id}>{site.name}</option>
                     ))}

@@ -201,16 +201,88 @@ export default function EditLoad({
   return (
     <>
       <Map individualLoad={individualLoad} />
-      <Container className="mt-5">
-        <Button
-          variant="outline-primary"
-          className="mb-2"
-          onClick={() => setViewIndividualLoad(false)}
-        >
-          Exit Load
-        </Button>
+      <Container fluid>
+        <Row>
+          <Col className="">
+            <Button
+              variant="outline-primary"
+              className="mb-2"
+              onClick={() => setViewIndividualLoad(false)}
+            >
+              Exit Load
+            </Button>
+          </Col>
+          <Col className="text-end">
+            <Button
+              variant="outline-danger"
+              className="mr-5"
+              onClick={handleDelete}
+            >
+              Delete Load # {individualLoad.id}
+            </Button>
+          </Col>
+        </Row>
+      </Container>
 
-        <Table bordered>
+      <Container className="mt-5">
+        <Table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td className="text-success">Customer Rate:</td>
+            <td>
+              $
+              {individualLoad.fees[0]
+                ? individualLoad.fees[0].customer_rate
+                : " -"}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td className="text-danger">Carrier Cost:</td>
+            <td>
+              $
+              {individualLoad.fees[0]
+                ? individualLoad.fees[0].carrier_rate
+                : " -"}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td className="text-primary">Margin:</td>
+            <td>
+              $
+              {individualLoad.fees[0]
+                ? individualLoad.fees[0].customer_rate -
+                  individualLoad.fees[0].carrier_rate
+                : " -"}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr></tr>
           <tr>
             <td className="text-primary">Load Number:</td>
             <td>{individualLoad.id ? individualLoad.id : "-----"}</td>
@@ -218,13 +290,13 @@ export default function EditLoad({
             <td>
               {individualLoad.customer_contact_email
                 ? individualLoad.customer_contact_email
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Carrier Phone:</td>
             <td>
               {individualLoad.carrier_contact_phone
                 ? individualLoad.carrier_contact_phone
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Weight:</td>
             <td>{individualLoad.weight ? individualLoad.weight : "-----"}</td>
@@ -232,30 +304,28 @@ export default function EditLoad({
           <tr>
             <td className="text-primary">Load Status:</td>
             <td>
-              {individualLoad.load_status
-                ? individualLoad.load_status
-                : "-----"}
+              {individualLoad.load_status ? individualLoad.load_status : "N/A"}
             </td>
             <td className="text-primary">Customer Phone:</td>
             <td>
               {individualLoad.customer_contact_phone
                 ? individualLoad.customer_contact_phone
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Customer Rep:</td>
             <td>
               {individualLoad.customer_rep_name.first_name
                 ? individualLoad.customer_rep_name.first_name
-                : "-----"}{" "}
+                : "N/A"}{" "}
               {individualLoad.customer_rep_name.last_name
                 ? individualLoad.customer_rep_name.last_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Pallet Count:</td>
             <td>
               {individualLoad.pallet_count
                 ? individualLoad.pallet_count
-                : "-----"}
+                : "N/A"}
             </td>
           </tr>
           <tr>
@@ -263,32 +333,27 @@ export default function EditLoad({
             <td>
               {individualLoad.truck_status
                 ? individualLoad.truck_status
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Carrier:</td>
             <td>
               {individualLoad.carrier_name
                 ? individualLoad.carrier_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Carrier Rep:</td>
             <td>
               {individualLoad.carrier_rep_name.first_name
                 ? individualLoad.carrier_rep_name.first_name
-                : "-----"}{" "}
+                : "N/A"}{" "}
               {individualLoad.carrier_rep_name.last_name
                 ? individualLoad.carrier_rep_name.last_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Driver Name / Cell:</td>
             <td>
-              {individualLoad.driver_name
-                ? individualLoad.driver_name
-                : "-----"}
-              :{" "}
-              {individualLoad.driver_cell
-                ? individualLoad.driver_cell
-                : "-----"}
+              {individualLoad.driver_name ? individualLoad.driver_name : "N/A"}:{" "}
+              {individualLoad.driver_cell ? individualLoad.driver_cell : "N/A"}
             </td>
           </tr>
           <tr>
@@ -296,13 +361,13 @@ export default function EditLoad({
             <td>
               {individualLoad.customer_name
                 ? individualLoad.customer_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Carrier Contact:</td>
             <td>
               {individualLoad.carrier_contact_name
                 ? individualLoad.carrier_contact_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Equipment / Temperature:</td>
             <td>
@@ -313,7 +378,7 @@ export default function EditLoad({
             <td>
               {individualLoad.truck_number
                 ? individualLoad.truck_number
-                : "-----"}
+                : "N/A"}
             </td>
           </tr>
           <tr>
@@ -321,25 +386,25 @@ export default function EditLoad({
             <td>
               {individualLoad.customer_contact_name
                 ? individualLoad.customer_contact_name
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Carrier Email:</td>
             <td>
               {individualLoad.carrier_contact_email
                 ? individualLoad.carrier_contact_email
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Length:</td>
             <td>
               {individualLoad.equipment_length
                 ? individualLoad.equipment_length
-                : "-----"}
+                : "N/A"}
             </td>
             <td className="text-primary">Trailer Number:</td>
             <td>
               {individualLoad.trailer_number
                 ? individualLoad.trailer_number
-                : "-----"}
+                : "N/A"}
             </td>
           </tr>
         </Table>
@@ -746,10 +811,6 @@ export default function EditLoad({
             </Col>
           </Row>
           <Container className="text-end mt-4">
-            <Button variant="danger" className="mr-5" onClick={handleDelete}>
-              Delete Load # {individualLoad.id}
-            </Button>
-
             <Button variant="primary" type="submit" align="center">
               Edit Load
             </Button>
