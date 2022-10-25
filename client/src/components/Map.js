@@ -72,7 +72,7 @@ function Map({ individualLoad }) {
         setDestinationLatLng(res.results[0].geometry.location);
         console.log(res.results[0].geometry.location);
       });
-  }, []);
+  }, [individualLoad]);
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyC54Xv04BjwdUTZfIMI897dVZRVlCtgue0">
@@ -85,3 +85,4 @@ function Map({ individualLoad }) {
 }
 
 export default React.memo(Map);
+// export default Map;

@@ -195,8 +195,15 @@ export default function EditLoad({
     setCarrierFee();
     setCustomerFee();
     setCustomerFeeType();
+
+    // fetch(`/loads/${individualLoad.id}`)
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setIndividualLoad(res);
+    //     console.log(res);
+    //   });
   }
-  console.log(individualLoad);
+  console.log(individualLoad.id);
 
   return (
     <>
