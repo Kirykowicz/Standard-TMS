@@ -32,6 +32,7 @@ export default function Carriers({ carriers, setCarriers }) {
                     value={viewCarrier}
                     onChange={(e) => setViewCarrier(e.target.value)}
                   >
+                    <option value="+30">Carrier Unassigned</option>
                     {carriers.map((carrier) => (
                       <option value={carrier.id}>{carrier.name}</option>
                     ))}
