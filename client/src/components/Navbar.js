@@ -13,7 +13,7 @@ function NavBar({ setUser }) {
   }
   return (
     <>
-      <Nav className="justify-content-center mb-3 mt-5" activeKey="/home">
+      <Nav className="justify-content-center mb-3 mt-4" activeKey="/home">
         <Nav.Item>
           <LinkContainer to="/">
             <Nav.Link>Load Board</Nav.Link>
