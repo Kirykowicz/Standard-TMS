@@ -32,6 +32,7 @@ export default function Customers({ customers, setCustomers }) {
                     value={viewCustomer}
                     onChange={(e) => setViewCustomer(e.target.value)}
                   >
+                    <option value="+39">Customer Unassigned</option>
                     {customers.map((customer) => (
                       <option value={customer.id}>{customer.name}</option>
                     ))}

@@ -43,7 +43,9 @@ export default function Sites({ sites, setSites }) {
               </Col>
               <Col></Col>
             </Row>
-            {viewSite ? <EditSite viewSite={viewSite} /> : null}
+            {viewSite ? (
+              <EditSite viewSite={viewSite} setViewSite={setViewSite} />
+            ) : null}
           </Container>
         </Tab>
       </Tabs>

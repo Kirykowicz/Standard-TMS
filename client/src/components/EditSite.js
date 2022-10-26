@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function EditSite({ viewSite }) {
+export default function EditSite({ viewSite, setViewSite }) {
   const [siteInfo, setSiteInfo] = useState({});
   const [name, setName] = useState();
   const [city, setCity] = useState();
@@ -19,8 +19,18 @@ export default function EditSite({ viewSite }) {
   useEffect(() => {
     fetch(`/sites/${viewSite}`)
       .then((res) => res.json())
-      .then(setSiteInfo);
-  }, [siteInfo]);
+      .then((res) => {
+        setSiteInfo(res);
+        setName();
+        setCity();
+        setState();
+        setAddress();
+        setZip();
+        setContact_name();
+        setContact_email();
+        setContact_phone();
+      });
+  }, [viewSite]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -43,8 +53,11 @@ export default function EditSite({ viewSite }) {
       },
       body: JSON.stringify(editSite),
     })
-      .then((res) => res.json)
-      .then(setSiteInfo);
+      .then((res) => res.json())
+      .then((res) => {
+        setSiteInfo(res);
+        setViewSite(res.id);
+      });
 
     setName("");
     setCity("");
