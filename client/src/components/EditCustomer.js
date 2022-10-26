@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function EditCustomer({ viewCustomer }) {
+export default function EditCustomer({ viewCustomer, setViewCustomer }) {
   const [customerInfo, setCustomerInfo] = useState({});
   const [name, setName] = useState();
   const [address, setAddress] = useState();
@@ -17,8 +17,16 @@ export default function EditCustomer({ viewCustomer }) {
   useEffect(() => {
     fetch(`/customers/${viewCustomer}`)
       .then((res) => res.json())
-      .then(setCustomerInfo);
-  }, [customerInfo]);
+      .then((res) => {
+        setCustomerInfo(res);
+        setName();
+        setAddress();
+        setContact_name();
+        setContact_email();
+        setContact_phone();
+        setNotes();
+      });
+  }, [viewCustomer]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,8 +47,11 @@ export default function EditCustomer({ viewCustomer }) {
       },
       body: JSON.stringify(editCustomer),
     })
-      .then((res) => res.json)
-      .then(setCustomerInfo);
+      .then((res) => res.json())
+      .then((res) => {
+        setCustomerInfo(res);
+        setViewCustomer(res.id);
+      });
 
     setName("");
     setAddress("");

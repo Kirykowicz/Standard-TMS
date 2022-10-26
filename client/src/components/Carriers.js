@@ -40,7 +40,12 @@ export default function Carriers({ carriers, setCarriers }) {
               </Col>
               <Col></Col>
             </Row>
-            {viewCarrier ? <EditCarrier viewCarrier={viewCarrier} /> : null}
+            {viewCarrier ? (
+              <EditCarrier
+                viewCarrier={viewCarrier}
+                setViewCarrier={setViewCarrier}
+              />
+            ) : null}
           </Container>
         </Tab>
       </Tabs>

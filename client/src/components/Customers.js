@@ -40,7 +40,12 @@ export default function Customers({ customers, setCustomers }) {
               </Col>
               <Col></Col>
             </Row>
-            {viewCustomer ? <EditCustomer viewCustomer={viewCustomer} /> : null}
+            {viewCustomer ? (
+              <EditCustomer
+                viewCustomer={viewCustomer}
+                setViewCustomer={setViewCustomer}
+              />
+            ) : null}
           </Container>
         </Tab>
       </Tabs>

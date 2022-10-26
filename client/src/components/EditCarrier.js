@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export default function EditCarrier({ viewCarrier }) {
+export default function EditCarrier({ viewCarrier, setViewCarrier }) {
   const [carrierInfo, setCarrierInfo] = useState({});
   const [name, setName] = useState();
   const [address, setAddress] = useState();
@@ -18,8 +18,17 @@ export default function EditCarrier({ viewCarrier }) {
   useEffect(() => {
     fetch(`/carriers/${viewCarrier}`)
       .then((res) => res.json())
-      .then(setCarrierInfo);
-  }, [carrierInfo]);
+      .then((res) => {
+        setCarrierInfo(res);
+        setName();
+        setAddress();
+        setMc_number();
+        setContact_name();
+        setContact_email();
+        setContact_phone();
+        setNotes();
+      });
+  }, [viewCarrier]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -41,9 +50,11 @@ export default function EditCarrier({ viewCarrier }) {
       },
       body: JSON.stringify(editCarrier),
     })
-      .then((res) => res.json)
-      .then(setCarrierInfo);
-
+      .then((res) => res.json())
+      .then((res) => {
+        setCarrierInfo(res);
+        setViewCarrier(res.id);
+      });
     setName("");
     setAddress("");
     setMc_number("");
@@ -52,6 +63,7 @@ export default function EditCarrier({ viewCarrier }) {
     setContact_phone("");
     setNotes("");
   }
+
   if (carrierInfo && carrierInfo.id != 30)
     // I added this functionality, if the carrier is unassigned (the model) I do not want that object to be able to be modified. So the edit form will not be rendered.
     return (
