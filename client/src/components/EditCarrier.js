@@ -46,7 +46,7 @@ export default function EditCarrier({ viewCarrier }) {
 
     setName("");
     setAddress("");
-    setMc_number(NaN);
+    setMc_number("");
     setContact_name("");
     setContact_email("");
     setContact_phone("");

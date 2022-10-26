@@ -18,7 +18,7 @@ export default function Carriers({ carriers, setCarriers }) {
         className="mb-3"
       >
         <Tab eventKey="addCarrier" title="Add a Carrier">
-          <NewCarrier carriers={setCarriers} setCarriers={setCarriers} />
+          <NewCarrier carriers={carriers} setCarriers={setCarriers} />
         </Tab>
         <Tab eventKey="SearchEdit" title="Edit a Carrier">
           <Container>
