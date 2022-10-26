@@ -209,17 +209,18 @@ export default function EditLoad({
 
   return (
     <>
-      {/* <Container fluid>
-        <Row>
-          <Col></Col>
-          <Col> */}
-      <Map individualLoad={individualLoad} />
-      {/* </Col>
-          <Col></Col>
-        </Row>
-      </Container> */}
+      <CloseButton onClick={() => setViewIndividualLoad(false)}></CloseButton>
 
-      <Container fluid>
+      {/* <Accordion defaultActiveKey="0" flush>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>View Stops on Map</Accordion.Header>
+          <Accordion.Body>
+            <Map individualLoad={individualLoad} />
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion> */}
+
+      {/* <Container fluid>
         <Row>
           <Col className="">
             <Button
@@ -240,9 +241,9 @@ export default function EditLoad({
             </p>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
 
-      <Container className="mt-5">
+      <Container className="mt-3 bg-light">
         <Table bordered>
           <tr>
             <td></td>
@@ -438,11 +439,31 @@ export default function EditLoad({
             <td className="">{individualLoad.stops[0].time}</td>
             <td className="text-primary">Delivery Time:</td>
             <td className="">{individualLoad.stops[1].time}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td
+              className="text-danger"
+              style={{ cursor: "pointer" }}
+              onClick={handleDelete}
+            >
+              Delete Load # {individualLoad.id}
+            </td>
           </tr>
         </Table>
       </Container>
 
-      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+      <Accordion defaultActiveKey="" flush>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>View Stops on Map</Accordion.Header>
+          <Accordion.Body>
+            <Map individualLoad={individualLoad} />
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
+      <Accordion defaultActiveKey="">
         <Accordion.Item eventKey="0">
           <Accordion.Header>Edit Load:</Accordion.Header>
           <Accordion.Body>
