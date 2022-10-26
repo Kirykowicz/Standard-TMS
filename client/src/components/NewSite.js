@@ -61,7 +61,7 @@ export default function NewSite({ sites, setSites }) {
     setAddress("");
     setCity("");
     setState("");
-    setZip(0);
+    setZip("");
     setContact_name("");
     setContact_email("");
     setContact_phone("");

@@ -23,6 +23,6 @@ class SitesController < ApplicationController
     private 
 
     def site_params
-        params.permit :name, :address, :mc_number, :contact_name, :contact_email, :contact_phone, :contact_phone, :notes 
+        params.permit :name, :address, :city, :state, :zip, :contact_name, :contact_email, :contact_phone
     end
 end

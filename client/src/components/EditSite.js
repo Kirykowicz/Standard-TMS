@@ -9,7 +9,7 @@ export default function EditSite({ viewSite, setViewSite }) {
   const [siteInfo, setSiteInfo] = useState({});
   const [name, setName] = useState();
   const [city, setCity] = useState();
-  const [state, setState] = useState();
+  const [theState, setTheState] = useState();
   const [address, setAddress] = useState();
   const [zip, setZip] = useState();
   const [contact_name, setContact_name] = useState();
@@ -23,7 +23,7 @@ export default function EditSite({ viewSite, setViewSite }) {
         setSiteInfo(res);
         setName();
         setCity();
-        setState();
+        setTheState();
         setAddress();
         setZip();
         setContact_name();
@@ -38,7 +38,7 @@ export default function EditSite({ viewSite, setViewSite }) {
     let editSite = {
       name,
       city,
-      state,
+      state: theState,
       address,
       zip,
       contact_name,
@@ -57,13 +57,13 @@ export default function EditSite({ viewSite, setViewSite }) {
       .then((res) => {
         setSiteInfo(res);
         setViewSite(res.id);
+        console.log(res);
       });
-
     setName("");
     setCity("");
-    setState("");
+    setTheState("");
     setAddress("");
-    setZip();
+    setZip("");
     setContact_name("");
     setContact_email("");
     setContact_phone("");
@@ -109,8 +109,8 @@ export default function EditSite({ viewSite, setViewSite }) {
                 <Form.Control
                   type="text"
                   placeholder=""
-                  value={state}
-                  onChange={(e) => setState(e.target.value)}
+                  value={theState}
+                  onChange={(e) => setTheState(e.target.value)}
                 />
               </Form.Group>
               <Form.Group className="mb-3">
