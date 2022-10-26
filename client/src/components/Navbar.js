@@ -5,11 +5,11 @@ import Container from "react-bootstrap/Container";
 
 function NavBar({ setUser }) {
   function handleLogoutClick() {
-    // fetch("/logout", { method: "DELETE" }).then((r) => {
-    //   if (r.ok) {
-    //     setUser(null);
-    //   }
-    // });
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
   }
   return (
     <>
@@ -44,11 +44,11 @@ function NavBar({ setUser }) {
           </LinkContainer>
         </Nav.Item>
 
-        <Nav.Item>
+        {/* <Nav.Item>
           <LinkContainer to="history">
             <Nav.Link>History</Nav.Link>
           </LinkContainer>
-        </Nav.Item>
+        </Nav.Item> */}
 
         <Nav.Item>
           <Nav.Link eventKey="link-2" onClick={handleLogoutClick}>

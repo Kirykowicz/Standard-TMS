@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :equipment
   resources :customer_reps
   resources :carrier_reps
-  resources :users
+  resources :users, only: [:index]
   resources :carriers
   resources :customers
   resources :loads

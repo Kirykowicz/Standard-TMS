@@ -16,7 +16,7 @@ import IndividualLoad from "./components/IndividualLoad";
 import Map from "./components/Map";
 
 function App() {
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [viewIndividualLoad, setViewIndividualLoad] = useState(false);
   const [individualLoad, setIndividualLoad] = useState({});
   const [sites, setSites] = useState([]);
@@ -29,16 +29,16 @@ function App() {
   const [truckStatuses, setTruckStatuses] = useState([]);
   const [loadStatuses, setLoadStatuses] = useState([]);
 
-  // useEffect(() => {
-  //   // auto-login
-  //   fetch("/me").then((r) => {
-  //     if (r.ok) {
-  //       r.json().then((user) => {
-  //         setUser(user);
-  //       });
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setUser(user);
+        });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     fetch("/loads")
@@ -78,7 +78,7 @@ function App() {
       .then(setLoadStatuses);
   }, [individualLoad]);
 
-  // if (!user) return <Login onLogin={setUser} />;
+  if (!user) return <Login onLogin={setUser} />;
 
   // when a load on the load board is clicked, view that individual load
   if (viewIndividualLoad)
@@ -99,6 +99,7 @@ function App() {
         setIndividualLoad={setIndividualLoad}
       />
     );
+
   return (
     <>
       <Container fluid className="bg-white" style={{ height: "100vh" }}>
@@ -106,7 +107,7 @@ function App() {
           <h1 className="text-secondary">Standard TMS</h1>
         </Container>
         {/* <Navbar setUser={setUser} /> */}
-        <NavBar />
+        <NavBar setUser={setUser} />
         <Routes>
           <Route
             exact

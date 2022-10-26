@@ -44,7 +44,7 @@ function Map({ individualLoad }) {
   }`;
 
   const containerStyle = {
-    width: "100vw",
+    width: "98vw",
     height: "400px",
   };
 

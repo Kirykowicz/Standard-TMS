@@ -14,8 +14,17 @@ export default function Login({ onLogin }) {
           <LoginForm onLogin={onLogin}></LoginForm>
           <hr></hr>
           <p>
-            Don't have an account? Sign up instead{" "}
-            <Button onClick={() => setShowLogin(false)}>Sign up instead</Button>
+            Don't have an account?{" "}
+            {
+              <span
+                style={{ cursor: "pointer" }}
+                className="text-primary"
+                onClick={() => setShowLogin(false)}
+              >
+                Sign up instead.
+              </span>
+            }
+            {/* <Button onClick={() => setShowLogin(false)}>Sign up instead</Button> */}
           </p>
         </Container>
       ) : (
@@ -23,8 +32,17 @@ export default function Login({ onLogin }) {
           <SignUpForm onLogin={onLogin} />
           <hr></hr>
           <p>
-            Already have an account? Sign in instead{" "}
-            <Button onClick={() => setShowLogin(true)}>Sign in instead</Button>
+            Already have an account?{" "}
+            {
+              <span
+                style={{ cursor: "pointer" }}
+                className="text-primary"
+                onClick={() => setShowLogin(true)}
+              >
+                Sign in instead
+              </span>
+            }{" "}
+            {/* <Button onClick={() => setShowLogin(true)}>Sign in instead</Button> */}
           </p>
         </Container>
       )}

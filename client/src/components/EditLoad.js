@@ -454,7 +454,7 @@ export default function EditLoad({
         </Table>
       </Container>
 
-      <Accordion defaultActiveKey="" flush>
+      <Accordion defaultActiveKey="">
         <Accordion.Item eventKey="0">
           <Accordion.Header>View Stops on Map</Accordion.Header>
           <Accordion.Body>
@@ -868,7 +868,7 @@ export default function EditLoad({
                   </Col>
                 </Row>
                 <Container className="text-end mt-4">
-                  <Button variant="info" type="submit" align="center">
+                  <Button variant="primary" type="submit" align="center">
                     Edit Load
                   </Button>
                 </Container>
