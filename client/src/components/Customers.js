@@ -18,7 +18,7 @@ export default function Customers({ customers, setCustomers }) {
         className="mb-3"
       >
         <Tab eventKey="addCustomer" title="Add a Customer">
-          <NewCustomer customers={customers} setCustomer={setCustomers} />
+          <NewCustomer customers={customers} setCustomers={setCustomers} />
         </Tab>
         <Tab eventKey="SearchEdit" title="Edit a Customer">
           <Container>

@@ -41,6 +41,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // if (user) {
     fetch("/loads")
       .then((res) => res.json())
       .then(setLoads);
@@ -76,6 +77,7 @@ function App() {
     fetch("/load_statuses")
       .then((res) => res.json())
       .then(setLoadStatuses);
+    // }
   }, [individualLoad]);
 
   if (!user) return <Login onLogin={setUser} />;

@@ -8,7 +8,9 @@ export default function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
   return (
     <>
-      <h1>TMS Lite</h1>
+      <Container fluid className="text-center">
+        <h1 className="text-secondary">Standard TMS</h1>
+      </Container>
       {showLogin ? (
         <Container>
           <LoginForm onLogin={onLogin}></LoginForm>

@@ -45,7 +45,7 @@ export default function LoginForm({ onLogin }) {
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control
-              type="text"
+              type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
